@@ -14,7 +14,6 @@ public:
 	Copy(const char* name, const char* author, int ISBN,const char* editionNumber, const char* location);
 	const char* getEditionNumber();
 	const char* getLocation();
-	int stock = 0;
 private:
 	const char* editionNumber;
 	const char* location;
