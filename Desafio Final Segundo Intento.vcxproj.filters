@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{626573fe-2eaa-4f15-afcd-d153a1de85fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Presenter">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Model\Book">
+      <UniqueIdentifier>{b1ee8517-912c-4319-8f82-f88d2504cc5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Book\Copy">
+      <UniqueIdentifier>{dc8ab155-8a4f-45fe-9937-09c03ba91a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presenter\BookPresenter">
+      <UniqueIdentifier>{5ee61b72-7ed4-459d-bb0d-d9fb6fe00435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presenter\MemberPresenter">
+      <UniqueIdentifier>{2bf14e19-ceaf-483d-9e25-b5facce4fb24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Loan">
+      <UniqueIdentifier>{31f34989-17be-4dde-9b41-14dc85ea3958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Member">
+      <UniqueIdentifier>{7714be9b-c6e7-41c2-a055-06ca2df359a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Member\MemberVIP">
+      <UniqueIdentifier>{6157c36d-5db3-4fd9-b787-d52e862472a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\Interface">
+      <UniqueIdentifier>{6bccbddd-4027-403b-8253-314ce02813bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BookPresenter.cpp">
+      <Filter>Presenter\BookPresenter</Filter>
+    </ClCompile>
+    <ClCompile Include="MemberPresenter.cpp">
+      <Filter>Presenter\MemberPresenter</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Model\Book</Filter>
+    </ClCompile>
+    <ClCompile Include="Loan.cpp">
+      <Filter>Model\Loan</Filter>
+    </ClCompile>
+    <ClCompile Include="Copy.cpp">
+      <Filter>Model\Book\Copy</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>View\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="MemberVIP.cpp">
+      <Filter>Model\Member\MemberVIP</Filter>
+    </ClCompile>
+    <ClCompile Include="Member.cpp">
+      <Filter>Model\Member\MemberVIP</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MemberPresenter.h">
+      <Filter>Presenter\MemberPresenter</Filter>
+    </ClInclude>
+    <ClInclude Include="BookPresenter.h">
+      <Filter>Presenter\BookPresenter</Filter>
+    </ClInclude>
+    <ClInclude Include="Loan.h">
+      <Filter>Model\Loan</Filter>
+    </ClInclude>
+    <ClInclude Include="Copy.h">
+      <Filter>Model\Book\Copy</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Model\Book</Filter>
+    </ClInclude>
+    <ClInclude Include="MemberVIP.h">
+      <Filter>Model\Member\MemberVIP</Filter>
+    </ClInclude>
+    <ClInclude Include="Member.h">
+      <Filter>Model\Member</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>View\Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
