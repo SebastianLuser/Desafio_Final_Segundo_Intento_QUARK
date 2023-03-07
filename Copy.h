@@ -11,11 +11,11 @@ class Book;
 class Copy : public Book {
 
 public:
-	Copy(const char* name, const char* author, int ISBN,const char* editionNumber, const char* location);
-	const char* getEditionNumber();
+	Copy(const char* name, const char* author, int ISBN,int editionNumber, const char* location);
+	int getEditionNumber();
 	const char* getLocation();
 private:
-	const char* editionNumber;
+	int editionNumber;
 	const char* location;
 };
 

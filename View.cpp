@@ -117,7 +117,7 @@ void View::bookCreateMenu() {
 	string bName;
 	string bAuthor;
 	int bISBN;
-	string bEditionNumber;
+	int bEditionNumber;
 	string bLocation;
 	try {
 		system("cls");
@@ -135,7 +135,7 @@ void View::bookCreateMenu() {
 		system("cls");
 		showText("Ingrese la locacion del libro:");
 		cin >> bLocation;
-		bookPresenter->setBooks(bName.c_str(), bAuthor.c_str(), bISBN, bEditionNumber.c_str(), bLocation.c_str());
+		bookPresenter->setBooks(bName.c_str(), bAuthor.c_str(), bISBN);
 		startMenu();
 	}
 	catch (...) {
@@ -165,18 +165,15 @@ void View::memberLoginMenu() {
 		}
 		if (this->inputI == 2) {
 			system("cls");
-			/*Imprimir lista de miebros VIP*/
 			showText("Ingrese el numero de socio VIP al que se desea ingresar:");
 			cin >> inputI;
-			/*
-			get member of list
-			memberMenu(member);
-			*/
+			memberMenu(inputI);
 		}
 	}
 };
 
 void View::memberMenu(int x) {
+	system("cls");
 	memberPresenter->printMember(x);
 	showText("");
 	showText("Elija una de las siguientes acciones: ");
