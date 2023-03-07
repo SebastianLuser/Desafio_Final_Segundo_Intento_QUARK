@@ -122,8 +122,6 @@ void View::bookCreateMenu() {
 	string bName;
 	string bAuthor;
 	int bISBN;
-	int bEditionNumber;
-	string bLocation;
 	try {
 		system("cls");
 		showText("Ingrese el nombre del libro:");
@@ -134,13 +132,40 @@ void View::bookCreateMenu() {
 		system("cls");
 		showText("Ingrese el codigo ISBN del libro:");
 		cin >> bISBN;
-		system("cls");
-		showText("Ingrese el numero de edicion del libro:");
-		cin >> bEditionNumber;
-		system("cls");
-		showText("Ingrese la locacion del libro:");
-		cin >> bLocation;
 		bookPresenter->setBooks(bName.c_str(), bAuthor.c_str(), bISBN);
+		startMenu();
+	}
+	catch (...) {
+		system("cls");
+		showText("----------------------------------------------------------------------");
+		showText("Input invalido, porfavor ingrese caulquier numero para volver.");
+		showText("----------------------------------------------------------------------");
+		cin.clear();
+		cin.ignore(500, '\n');
+		cin >> this->inputI;
+		/*menuInicio();*/
+	}
+};
+
+void View::copyCreateMenu() {
+	int cISBN;
+	int cEditionNumber;
+	string cLocation;
+	int cStock;
+	try {
+		system("cls");
+		showText("Ingrese el codigo ISBN del Libro:");
+		cin >> cISBN;
+		system("cls");
+		showText("Ingrese el numero de edicion del Ejemplar:");
+		cin >> cEditionNumber;
+		system("cls");
+		showText("Ingrese la locacion del Ejemplar:");
+		cin >> cLocation;
+		system("cls");
+		showText("Ingrese stock del Ejemplar:");
+		cin >> cStock;
+		bookPresenter->setCopys(cISBN, cEditionNumber, cLocation.c_str(), cStock);
 		startMenu();
 	}
 	catch (...) {
