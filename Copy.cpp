@@ -7,10 +7,11 @@
 //}
 
 
-Copy::Copy(Book* book, int editionNumber, const char* location) {
+Copy::Copy(Book* book, int editionNumber, const char* location, int stock) {
 	this->book = book;
 	this->editionNumber = editionNumber;
 	this->location = location;
+	this->stock = stock;
 }
 
 int Copy::getEditionNumber() {
@@ -18,4 +19,8 @@ int Copy::getEditionNumber() {
 }
 const char* Copy::getLocation() {
 	return location;
+}
+
+int Copy::getStock() {
+	return stock;
 }
