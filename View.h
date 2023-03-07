@@ -17,6 +17,7 @@ public:
 	void startMenu();
 	void memberCreateMenu();
 	void bookCreateMenu();
+	void copyCreateMenu();
 	void memberLoginMenu();
 	void memberMenu(int x);
 	void bookMenu();

@@ -12,7 +12,8 @@ class BookPresenter {
 public:
 	BookPresenter();
 	void setBooks(const char* name, const char* author, int ISBN);
-	void setCopys(const char* name, const char* author, int ISBN, int editionNumber, const char* location);
+	void setCopys(int ISBN, int editionNumber, const char* location);
+	Book* getBook(int ISBN);
 	list<Book*> getBooks();
 	list<Copy*> getCopys();
 private:

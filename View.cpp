@@ -23,10 +23,11 @@ void View::startMenu() {
 		showText("Bienvenido seleccione una de las siguientes opciones:");
 		showText("	1. Crear un Socio.");
 		showText("	2. Crear un Libro.");
-		showText("	3. Registrar accion de un Socio.");
-		showText("	4. Salir.");
+		showText("	3. Crear un Ejemplar.");
+		showText("	4. Registrar accion de un Socio.");
+		showText("	5. Salir.");
 		cin >> this->inputI;
-		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
+		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5) {
 			if (this->inputI == 1) {
 				system("cls");
 				memberCreateMenu();
@@ -40,6 +41,10 @@ void View::startMenu() {
 				memberLoginMenu();
 			}
 			if (this->inputI == 4) {
+				system("cls");
+				copyCreateMenu();
+			}
+			if (this->inputI == 5) {
 				EXIT_SUCCESS;
 			}
 		}
@@ -180,8 +185,9 @@ void View::memberMenu(int x) {
 	showText("	1. Realizar un prestamo");
 	showText("	2. Mostrar historial de prestamos");
 	showText("	3. Devolver un libro");
+	showText("	4. Volver al menu inicial");
 	cin >> this->inputI;
-	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3) {
+	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
 		if (this->inputI == 1) {
 			system("cls");
 			bookMenu();
@@ -194,14 +200,26 @@ void View::memberMenu(int x) {
 			system("cls");
 
 		}
+		if (this->inputI == 4) {
+			system("cls");
+			startMenu();
+		}
 	}
 };
 
 void View::bookMenu() {
 	system("cls");
-	/*Mostrar libros disponibles*/
-	showText("Ingrese el numero de libro que desea retirar:");
+	showText("Ingrese el codigo ISBN del Libro que desea retirar:");
 	cin >> inputI;
+	system("cls");
+	showText("Ingrese el numero de edicion del Ejemplar que desea retirar:");
+	cin >> inputI;
+	showText("Ingrese cuantos ejemplares desea retirar:");
+	cin >> inputI;
+	/*showText("Hay " + BookPresenter->cantDisponible() + " ejemplares disponibles."*/
+	if (/*BookPresenter->disponible()*/ == true) {
+
+	}
 	/*
 	get libro of list de libros dispoibles
 	member register in listOfPrestamos
