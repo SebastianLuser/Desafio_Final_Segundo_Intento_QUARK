@@ -71,7 +71,6 @@ void View::memberCreateMenu() {
 	string mLastName;
 	int mID;
 	int mVIPInput;
-	bool mVIP;
 	float mFee = 0;
 	try {
 		system("cls");
@@ -91,18 +90,15 @@ void View::memberCreateMenu() {
 		if (this->inputI == 1 || this->inputI == 2) {
 			if (this->inputI == 1) {
 				system("cls");
-				mVIP = true;
 				system("cls");
 				showText("Ingrese el costo mensual de la membresia VIP:");
 				cin >> mFee;
-				memberPresenter->setMembers(mName.c_str(), mLastName.c_str(), mID, mVIP, mFee);
+				memberPresenter->setMembersVIP(mName.c_str(), mLastName.c_str(), mID, mFee);
 				startMenu();
 			}
 			if (this->inputI == 2) {
 				system("cls");
-				mVIP = false;
-				memberPresenter->setMembers(mName.c_str(), mLastName.c_str(), mID, mVIP, 0);
-				memberPresenter->printMemberList();
+				memberPresenter->setMembers(mName.c_str(), mLastName.c_str(), mID);
 				startMenu();
 			}
 		}
@@ -182,30 +178,37 @@ void View::copyCreateMenu() {
 };
 
 void View::memberLoginMenu() {
+	int input;
+	int ID;
 	system("cls");
 	showText("Desea ingrear a un socio Clasico o VIP:");
 	showText("	1.Clasico");
 	showText("	2.VIP");
-	cin >> inputI;
-	if (this->inputI == 1 || this->inputI == 2) {
-		if (this->inputI == 1) {
+	cin >> input;
+	if (input == 1 || input == 2) {
+		if (input == 1) {
 			system("cls");
-			showText("Ingrese el numero de socio Clasico al que se desea ingresar:");
-			cin >> inputI;
-			memberMenu(inputI);
+			showText("Ingrese el ID Clasico al que se desea ingresar:");
+			cin >> ID;
+			memberMenu(input,ID);
 		}
-		if (this->inputI == 2) {
+		if (input == 2) {
 			system("cls");
-			showText("Ingrese el numero de socio VIP al que se desea ingresar:");
-			cin >> inputI;
-			memberMenu(inputI);
+			showText("Ingrese el ID VIP al que se desea ingresar:");
+			cin >> ID;
+			memberMenu(input, ID);
 		}
 	}
 };
 
-void View::memberMenu(int x) {
+void View::memberMenu(int input, int ID) {
 	system("cls");
-	memberPresenter->printMember(x);
+	if (input == 1) {
+		memberPresenter->printMember(ID);
+	}
+	else if(input == 2) {
+		memberPresenter->printMemberVIP(ID);
+	}
 	showText("");
 	showText("Elija una de las siguientes acciones: ");
 	showText("	1. Realizar un prestamo");

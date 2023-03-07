@@ -19,7 +19,7 @@ public:
 	void bookCreateMenu();
 	void copyCreateMenu();
 	void memberLoginMenu();
-	void memberMenu(int x);
+	void memberMenu(int input, int ID);
 	void bookMenu();
 	virtual ~View() = default;
 private:

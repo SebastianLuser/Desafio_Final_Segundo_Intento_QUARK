@@ -13,16 +13,19 @@ class MemberPresenter {
 
 public:
 	MemberPresenter(IView* view);
-	void setMembers(const char* name, const char* lastname, int identificationNumber, bool vip, float fee);
+	void setMembers(const char* name, const char* lastname, int identificationNumber);
+	void setMembersVIP(const char* name, const char* lastname, int identificationNumber, float fee);
 	void printMemberList();
+	void printMemberVIPList();
 	void printMember(int x);
+	void printMemberVIP(int x);
 	list<Member*> getMembers();
-	list<MemberVIP*> getMembersVip();
+	list<MemberVIP*> getMembersVIP();
 
 private:
 	IView* m_view = nullptr;
 	list<Member*> members;
-	list<MemberVIP*> membersVip;
+	list<MemberVIP*> membersVIP;
 };
 
 #endif
