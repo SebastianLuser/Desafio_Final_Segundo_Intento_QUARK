@@ -6,6 +6,7 @@
 
 View::View() {
 	memberPresenter = new MemberPresenter(this);
+	bookPresenter = new BookPresenter(this);
 	startMenu();
 }
 
@@ -242,9 +243,9 @@ void View::bookMenu() {
 	showText("Ingrese cuantos ejemplares desea retirar:");
 	cin >> inputI;
 	/*showText("Hay " + BookPresenter->cantDisponible() + " ejemplares disponibles."*/
-	if (/*BookPresenter->disponible()*/ == true) {
+	//if (/*BookPresenter->disponible()*/ == true) {
 
-	}
+	//}
 	/*
 	get libro of list de libros dispoibles
 	member register in listOfPrestamos

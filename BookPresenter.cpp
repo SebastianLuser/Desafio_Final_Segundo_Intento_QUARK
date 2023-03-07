@@ -4,12 +4,13 @@
 #include <List>
 #include <iostream>
 
-BookPresenter::BookPresenter() {
+BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Book*> books;
 	list<Copy*> copys;
 }
+
 void BookPresenter::setBooks(const char* name, const char* author, int ISBN) {
-	books.push_back(new Book(name, author, ISBN));
+	this->books.push_back(new Book(name, author, ISBN));
 }
 
 void BookPresenter::setCopys(int ISBN, int editionNumber, const char* location, int stock) {

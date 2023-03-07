@@ -4,17 +4,17 @@
 using namespace std;
 
 class Book {
-	friend class Copy;
+	/*friend class Copy;*/
 public:
 	Book(const char* name, const char* author, int ISBN);
 	const char* getName();
 	const char* getAuthor();
 	int getISBN();
-protected:
+private:
 	const char* name;
 	const char* author;
 	int ISBN;
 };
 
-#endif#
+#endif
 
