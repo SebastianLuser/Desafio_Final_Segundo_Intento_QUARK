@@ -1,13 +1,6 @@
 #include "Book.h"
 #include<iostream>
-#include <conio.h>
-#include <cstdlib>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
-#include <typeinfo>  
-#include <List>
-#include <ctime>
 
 
 Book::Book(string name, string author, int ISBN) {

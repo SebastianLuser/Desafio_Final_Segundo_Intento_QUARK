@@ -3,6 +3,7 @@
 #include "MemberPresenter.h"
 #include "BookPresenter.h"
 #include "MemberVIP.h"
+#include <string>
 
 View::View() {
 	memberPresenter = new MemberPresenter(this);

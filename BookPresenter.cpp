@@ -12,8 +12,15 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
-	this->books.push_back(new Book(name, author, ISBN));
-}
+	for (Book* book : this->books) {
+		if (book->getISBN() == ISBN) {
+			m_view->showText("Ya existe un Libro con el correspondiente ISBN");
+		}
+		else {
+			this->books.push_back(new Book(name, author, ISBN));
+		}
+	}
+}		
 
 void BookPresenter::setCopys(int ISBN, int editionNumber, string location, int stock) {
 	this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, stock));

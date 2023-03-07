@@ -4,6 +4,7 @@
 #include "Book.h"
 #include <List>
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Member {

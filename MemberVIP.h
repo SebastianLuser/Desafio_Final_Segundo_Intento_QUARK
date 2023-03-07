@@ -1,6 +1,7 @@
 #ifndef MEMBERVIP_HPP
 #define MEMBERVIP_HPP
 #include "Member.h"
+#include <string>
 using namespace std;
 
 class Member;
