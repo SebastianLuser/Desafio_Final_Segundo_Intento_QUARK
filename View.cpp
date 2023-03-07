@@ -35,15 +35,15 @@ void View::startMenu() {
 			}
 			if (this->inputI == 2) {
 				system("cls");
-				memberLoginMenu();
+				bookCreateMenu();
 			}
 			if (this->inputI == 3) {
 				system("cls");
-				bookCreateMenu();
+				copyCreateMenu();
 			}
 			if (this->inputI == 4) {
 				system("cls");
-				copyCreateMenu();
+				memberLoginMenu();
 			}
 			if (this->inputI == 5) {
 				EXIT_SUCCESS;
