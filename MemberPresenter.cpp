@@ -9,11 +9,11 @@ MemberPresenter::MemberPresenter(IView* view) : m_view(view) {
 	list<Member*> members;
 	list<MemberVIP*> membersVIP;
 }
-void MemberPresenter::setMembers(const char* name, const char* lastname, int identificationNumber) {
+void MemberPresenter::setMembers(string name, string lastname, int identificationNumber) {
 	this->members.push_back(new Member(name, lastname,  identificationNumber));
 }
 
-void MemberPresenter::setMembersVIP(const char* name, const char* lastname, int identificationNumber, float fee) {
+void MemberPresenter::setMembersVIP(string name, string lastname, int identificationNumber, float fee) {
 	this->membersVIP.push_back(new MemberVIP(name, lastname, identificationNumber, fee));
 }
 

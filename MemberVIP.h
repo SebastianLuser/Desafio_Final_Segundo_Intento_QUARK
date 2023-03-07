@@ -8,7 +8,7 @@ class Member;
 class MemberVIP : public Member {
 
 public:
-	MemberVIP(const char* name, const char* lastname, int identificationNumber, float fee);
+	MemberVIP(string name, string lastname, int identificationNumber, float fee);
 	float getFee();
 
 private:

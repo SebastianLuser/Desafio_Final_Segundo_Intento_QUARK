@@ -10,14 +10,14 @@ class Member {
 
 friend class MemberVIP;
 public:
-	Member(const char* name,const char* lastname,int identificationNumber);
-	const char* getName();
-	const char* getLastname();
+	Member(string name,string lastname,int identificationNumber);
+	string getName();
+	string getLastname();
 	int getIdentificationNumber();
 	
 protected:
-	const char* name;
-	const char* lastname;
+	string name;
+	string lastname;
 	int identificationNumber;
 	list<Book*> retiredBooks;
 

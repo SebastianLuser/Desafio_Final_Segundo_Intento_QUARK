@@ -13,8 +13,8 @@ class MemberPresenter {
 
 public:
 	MemberPresenter(IView* view);
-	void setMembers(const char* name, const char* lastname, int identificationNumber);
-	void setMembersVIP(const char* name, const char* lastname, int identificationNumber, float fee);
+	void setMembers(string name, string lastname, int identificationNumber);
+	void setMembersVIP(string name, string lastname, int identificationNumber, float fee);
 	void printMemberList();
 	void printMemberVIPList();
 	void printMember(int x);

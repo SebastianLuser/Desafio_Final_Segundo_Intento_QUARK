@@ -11,11 +11,11 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Copy*> copies;
 }
 
-void BookPresenter::setBooks(const char* name, const char* author, int ISBN) {
+void BookPresenter::setBooks(string name, string author, int ISBN) {
 	this->books.push_back(new Book(name, author, ISBN));
 }
 
-void BookPresenter::setCopys(int ISBN, int editionNumber, const char* location, int stock) {
+void BookPresenter::setCopys(int ISBN, int editionNumber, string location, int stock) {
 	this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, stock));
 }
 
@@ -41,10 +41,12 @@ void BookPresenter::printBookList() {
 		string s01 = book->getName();
 		string s02 = book->getAuthor();
 		string s03 = to_string(book->getISBN());
+		m_view->showText("-----------------------------------------------");
 		m_view->showText("El libro ingresado tiene los siguientes datos:");
 		m_view->showText("	Nombre: " + s01);
 		m_view->showText("	Autor: " + s02);
 		m_view->showText("	ISBN: " + s03);
+		m_view->showText("-----------------------------------------------");
 	}
 }
 void BookPresenter::printBook(int x) {

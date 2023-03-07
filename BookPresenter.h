@@ -4,7 +4,7 @@
 #include "Book.h"
 #include "Copy.h"
 #include <List>
-
+#include <string>
 using namespace std;
 
 class IView;
@@ -13,8 +13,8 @@ class BookPresenter {
 
 public:
 	BookPresenter(IView* view);
-	void setBooks(const char* name, const char* author, int ISBN);
-	void setCopys(int ISBN, int editionNumber, const char* location, int stock);
+	void setBooks(string name, string author, int ISBN);
+	void setCopys(int ISBN, int editionNumber, string location, int stock);
 	void printBookList();
 	void printBook(int x);
 	void printCopyList(int ISBN);

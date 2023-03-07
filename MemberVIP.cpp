@@ -2,7 +2,7 @@
 
 
 
-MemberVIP::MemberVIP(const char* name, const char* lastname, int identificationNumber, float fee) : Member(name, lastname, identificationNumber) {
+MemberVIP::MemberVIP(string name, string lastname, int identificationNumber, float fee) : Member(name, lastname, identificationNumber) {
 	this->fee =fee;
 }
 

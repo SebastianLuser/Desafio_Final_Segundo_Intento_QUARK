@@ -1,18 +1,18 @@
 #ifndef BOOK_HPP
 #define BOOK_HPP
-
+#include <string> 
 using namespace std;
 
 class Book {
 	/*friend class Copy;*/
 public:
-	Book(const char* name, const char* author, int ISBN);
-	const char* getName();
-	const char* getAuthor();
+	Book(string name, string author, int ISBN);
+	string getName();
+	string getAuthor();
 	int getISBN();
 private:
-	const char* name;
-	const char* author;
+	string name;
+	string author;
 	int ISBN;
 };
 

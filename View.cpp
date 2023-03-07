@@ -26,9 +26,10 @@ void View::startMenu() {
 		showText("	2. Crear un Libro.");
 		showText("	3. Crear un Ejemplar.");
 		showText("	4. Registrar accion de un Socio.");
-		showText("	5. Salir.");
+		showText("	5. Mostrar libros.");
+		showText("	6. Salir.");
 		cin >> this->inputI;
-		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5) {
+		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6) {
 			if (this->inputI == 1) {
 				system("cls");
 				memberCreateMenu();
@@ -46,6 +47,10 @@ void View::startMenu() {
 				memberLoginMenu();
 			}
 			if (this->inputI == 5) {
+				system("cls");
+				bookPresenter->printBookList();
+			}
+			if (this->inputI == 6) {
 				EXIT_SUCCESS;
 			}
 		}

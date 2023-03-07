@@ -2,17 +2,17 @@
 
 using namespace std;
 
-Member::Member(const char* name, const char* lastname, int identificationNumber){
+Member::Member(string name, string lastname, int identificationNumber){
 	this->name = name;
 	this->lastname = lastname;
 	this->identificationNumber = identificationNumber;
 }
 
-const char* Member::getName() {
+string Member::getName() {
 	return name;
 }
 
-const char* Member::getLastname() {
+string Member::getLastname() {
 
 	return lastname;
 }
