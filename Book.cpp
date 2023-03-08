@@ -2,7 +2,6 @@
 #include<iostream>
 #include <string>
 
-
 Book::Book(string name, string author, int ISBN) {
 	this->name = name;
 	this->author = author;

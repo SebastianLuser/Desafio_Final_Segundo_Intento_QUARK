@@ -21,7 +21,7 @@ void View::showText(const string& text) {
 
 void View::startMenu() {
 	try {
-		system("cls");
+		/*system("cls");*/
 		showText("Bienvenido seleccione una de las siguientes opciones:");
 		showText("	1. Crear un Socio.");
 		showText("	2. Crear un Libro.");
@@ -30,7 +30,7 @@ void View::startMenu() {
 		showText("	5. Mostrar libros.");
 		showText("	6. Salir.");
 		cin >> this->inputI;
-		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6) {
+		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7) {
 			if (this->inputI == 1) {
 				system("cls");
 				memberCreateMenu();
@@ -50,8 +50,16 @@ void View::startMenu() {
 			if (this->inputI == 5) {
 				system("cls");
 				bookPresenter->printBookList();
+				startMenu();
 			}
 			if (this->inputI == 6) {
+				system("cls");
+				int isbn;
+				cin >> isbn;
+				bookPresenter->printCopyList(isbn);
+				startMenu();
+			}
+			if (this->inputI == 7) {
 				EXIT_SUCCESS;
 			}
 		}

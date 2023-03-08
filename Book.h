@@ -4,7 +4,6 @@
 using namespace std;
 
 class Book {
-	/*friend class Copy;*/
 public:
 	Book(string name, string author, int ISBN);
 	string getName();

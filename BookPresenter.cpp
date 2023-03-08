@@ -12,18 +12,22 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
-	for (Book* book : this->books) {
-		if (book->getISBN() == ISBN) {
-			m_view->showText("Ya existe un Libro con el correspondiente ISBN");
-		}
-		else {
-			this->books.push_back(new Book(name, author, ISBN));
-		}
+
+	if (getBook(ISBN)) {
+		m_view->showText("Ya existe un Libro con el correspondiente ISBN");
+	}
+	else {
+		this->books.push_back(new Book(name, author, ISBN));
 	}
 }		
 
 void BookPresenter::setCopys(int ISBN, int editionNumber, string location, int stock) {
-	this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, stock));
+	if (getBook(ISBN)) {
+		this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, stock));
+	}
+	else {
+		m_view->showText("No existe un Libro con el correspondiente ISBN");
+	}
 }
 
 Book* BookPresenter::getBook(int ISBN) {
@@ -49,7 +53,7 @@ void BookPresenter::printBookList() {
 		string s02 = book->getAuthor();
 		string s03 = to_string(book->getISBN());
 		m_view->showText("-----------------------------------------------");
-		m_view->showText("El libro ingresado tiene los siguientes datos:");
+		m_view->showText("El libro ing resadotiene los siguientes datos:");
 		m_view->showText("	Nombre: " + s01);
 		m_view->showText("	Autor: " + s02);
 		m_view->showText("	ISBN: " + s03);
