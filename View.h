@@ -21,7 +21,7 @@ public:
 	void copyCreateMenu();
 	void memberLoginMenu();
 	void memberMenu(int input, int ID);
-	void bookMenu();
+	void bookMenu(int ID);
 	virtual ~View() = default;
 private:
 	int inputI;

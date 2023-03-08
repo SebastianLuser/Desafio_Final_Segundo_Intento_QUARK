@@ -241,7 +241,7 @@ void View::memberMenu(int input, int ID) {
 	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
 		if (this->inputI == 1) {
 			system("cls");
-			bookMenu();
+			bookMenu(ID);
 		}
 		if (this->inputI == 2) {
 			system("cls");
@@ -258,22 +258,24 @@ void View::memberMenu(int input, int ID) {
 	}
 };
 
-void View::bookMenu() {
+void View::bookMenu(int ID) {
+	int ISBN;
+	int numE;
+	int pos;
 	system("cls");
 	showText("Ingrese el codigo ISBN del Libro que desea retirar:");
-	cin >> inputI;
+	cin >> ISBN;
 	system("cls");
 	showText("Ingrese el numero de edicion del Ejemplar que desea retirar:");
-	cin >> inputI;
-	showText("Ingrese cuantos ejemplares desea retirar:");
-	cin >> inputI;
-	/*showText("Hay " + BookPresenter->cantDisponible() + " ejemplares disponibles."*/
-	//if (/*BookPresenter->disponible()*/ == true) {
-
-	//}
-	/*
-	get libro of list de libros dispoibles
-	member register in listOfPrestamos
-	actualizar cantidad de ejemplares del libro seleccionado
-	*/
+	cin >> numE;
+	system("cls");
+	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
+	cin >> pos;
+	/*if (bookPresenter->getCopy(ISBN, numE, pos)) {
+		if(bookPresenter->getCopy(ISBN, numE, pos)->getStock() == true){
+			bookPresenter->getCopy(ISBN, numE, pos)->setStock(false);
+			memberPresenter->withDrawnCopy(bookPresenter->getCopy(ISBN, numE, pos));
+			loanPresenter->setLoan(bookPresenter->getCopy(ISBN, numE, pos), memberPresenter->getMembers(ID), date);
+		}
+	}*/
 };

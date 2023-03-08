@@ -14,8 +14,8 @@ class LoanPresenter {
 
 public:
 	LoanPresenter(IView* view);
-	void setLoans(Copy* copy, Member* member, string date);
-	void setLoans(Copy* copy, MemberVIP* memberVIP, string date);
+	void setLoan(Copy* copy, Member* member, string date);
+	void setLoan(Copy* copy, MemberVIP* memberVIP, string date);
 	void printLoanList();
 	void printLoan(int x);
 	/*Loan* getLoan(int ISBN);*/

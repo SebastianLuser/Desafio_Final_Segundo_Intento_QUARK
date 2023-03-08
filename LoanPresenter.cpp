@@ -9,11 +9,11 @@ LoanPresenter::LoanPresenter(IView* view) : m_view(view) {
 	list<Loan*> loans;
 }
 
-void LoanPresenter::setLoans(Copy* copy, Member* member, string date) {
+void LoanPresenter::setLoan(Copy* copy, Member* member, string date) {
 	this->loans.push_back(new Loan(copy, member, date));
 }
 
-void LoanPresenter::setLoans(Copy* copy, MemberVIP* memberVIP, string date) {
+void LoanPresenter::setLoan(Copy* copy, MemberVIP* memberVIP, string date) {
 	this->loans.push_back(new Loan(copy, memberVIP, date));
 }
 
