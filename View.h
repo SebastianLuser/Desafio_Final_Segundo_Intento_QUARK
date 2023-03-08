@@ -8,6 +8,7 @@ using namespace std;
 class Member;
 class MemberPresenter;
 class BookPresenter;
+class LoanPresenter;
 class View : public IView
 {
 public:
@@ -27,5 +28,6 @@ private:
 	
 	MemberPresenter* memberPresenter;
 	BookPresenter* bookPresenter;
+	LoanPresenter* loanPresenter;
 };
 #endif

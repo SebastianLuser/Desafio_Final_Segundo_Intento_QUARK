@@ -2,12 +2,14 @@
 #include "View.h"
 #include "MemberPresenter.h"
 #include "BookPresenter.h"
+#include "LoanPresenter.h"
 #include "MemberVIP.h"
 #include <string>
 
 View::View() {
 	memberPresenter = new MemberPresenter(this);
 	bookPresenter = new BookPresenter(this);
+	loanPresenter = new LoanPresenter(this);
 	startMenu();
 }
 
@@ -28,9 +30,10 @@ void View::startMenu() {
 		showText("	3. Crear un Ejemplar.");
 		showText("	4. Registrar accion de un Socio.");
 		showText("	5. Mostrar libros.");
+		showText("	7. Mostrar historial de prestamos");
 		showText("	6. Salir.");
 		cin >> this->inputI;
-		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7) {
+		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7 || this->inputI == 8) {
 			if (this->inputI == 1) {
 				system("cls");
 				memberCreateMenu();
@@ -59,7 +62,12 @@ void View::startMenu() {
 				bookPresenter->printCopyList(isbn);
 				startMenu();
 			}
-			if (this->inputI == 7) {
+			if (this->inputI == 9) {
+				system("cls");
+				loanPresenter->printLoanList();
+				startMenu();
+			}
+			if (this->inputI == 8) {
 				EXIT_SUCCESS;
 			}
 		}
@@ -226,7 +234,7 @@ void View::memberMenu(int input, int ID) {
 	showText("");
 	showText("Elija una de las siguientes acciones: ");
 	showText("	1. Realizar un prestamo");
-	showText("	2. Mostrar historial de prestamos");
+	showText("	2. Mostrar ejemplares retirados");
 	showText("	3. Devolver un libro");
 	showText("	4. Volver al menu inicial");
 	cin >> this->inputI;
