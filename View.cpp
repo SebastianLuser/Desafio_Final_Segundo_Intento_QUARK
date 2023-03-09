@@ -29,11 +29,60 @@ void View::startMenu() {
 		showText("	2. Crear un Libro.");
 		showText("	3. Crear un Ejemplar.");
 		showText("	4. Registrar accion de un Socio.");
-		showText("	5. Mostrar libros.");
-		showText("	7. Mostrar historial de prestamos");
-		showText("	6. Salir.");
+		showText("	5. Mostrar Libros.");
+		showText("	7. Mostrar historial de Prestamos");
+		showText("	8. Mostrar ejemplares de un Libro");
+		showText("	9. Salir.");
 		cin >> this->inputI;
-		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7 || this->inputI == 8) {
+		switch (this->inputI) {
+		case 1:
+			system("cls");
+			memberCreateMenu();
+			break;
+		case 2:
+			system("cls");
+			bookCreateMenu();
+			break;
+		case 3:
+			system("cls");
+			copyCreateMenu();
+			break;
+		case 4:
+			system("cls");
+			memberLoginMenu();
+			break;
+		case 5:
+			system("cls");
+			bookPresenter->printBookList();
+			startMenu();
+			break;
+		case 6:
+			system("cls");
+			int isbn;
+			cin >> isbn;
+			bookPresenter->printCopyList(isbn);
+			startMenu();
+			break;
+		case 7:
+			system("cls");
+			loanPresenter->printLoanList();
+			startMenu();
+			break;
+		case 8:
+			system("cls");
+			showText("Ingrese el ISBN del Libro del cual quiere ver sus Ejemplares");
+			cin >> isbn;
+			bookPresenter->printCopyList(isbn);
+			cin >> isbn;
+			startMenu();
+			break;
+		case 9:
+			EXIT_SUCCESS;
+			break;
+		default:
+			throw this->inputI;
+		}
+		/*if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7 || this->inputI == 8) {
 			if (this->inputI == 1) {
 				system("cls");
 				memberCreateMenu();
@@ -62,7 +111,7 @@ void View::startMenu() {
 				bookPresenter->printCopyList(isbn);
 				startMenu();
 			}
-			if (this->inputI == 9) {
+			if (this->inputI == 7) {
 				system("cls");
 				loanPresenter->printLoanList();
 				startMenu();
@@ -73,7 +122,7 @@ void View::startMenu() {
 		}
 		else {
 			throw this->inputI;
-		}
+		}*/
 	}
 
 	catch (...) {

@@ -8,6 +8,15 @@
 
 BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Book*> books;
+
+	string s01 = "Narnia";
+	string s02 = "Juan";
+	int s03 = 1234;
+	setBooks(s01, s02, s03);
+	int s04 = 1;
+	string s05 = "A550";
+	bool s06 = true;
+	setCopies(s03, s04, s05, s06);
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
@@ -22,15 +31,15 @@ void BookPresenter::setBooks(string name, string author, int ISBN) {
 
 void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool available) {
 	if (getBook(ISBN)) {
-		if (getCopy(location)) {
+		if (getCopy(location) != 0) {
 			m_view->showText("Ya existe un Ejemplar con la correspondiente locacion");
 		}
 		else {
 			Book* bookaux;
 			bookaux = this->getBook(ISBN);
-			auto copyaux = bookaux->getCopyList();
+			list<Copy*> copyaux = bookaux->getCopyList();
 			copyaux.push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
-			bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
+			/*bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));*/
 		}
 	}
 	else {
@@ -43,12 +52,13 @@ Copy* BookPresenter::getCopy(string location) {
 	list<Copy*> copiesaux;
 	for (Book* book : this->books) {
 		copiesaux = book->getCopyList();
-		for (Copy* copy : this->copies) {
+		for (Copy* copy : copiesaux) {
 			if (copy->getLocation() == location) {
 				return copy;
 			}
 		}
 	}
+	return 0;
 	/*for (Copy* copy : this->copies) {
 		if (copy->getLocation() == location) {
 			return copy;
@@ -103,8 +113,8 @@ void BookPresenter::printBook(int x) {
 void BookPresenter::printCopyList(int ISBN) {
 	for (Book* book : this->books) {
 		if (book->getISBN() == ISBN) {
-			auto copies = book->getCopyList();
-			for (Copy* copy : copies) {
+			list<Copy*> copyaux = book->getCopyList();
+			for (Copy* copy : copyaux) {
 				string s01 = copy->getName();
 				string s02 = copy->getAuthor();
 				string s03 = to_string(copy->getISBN());
