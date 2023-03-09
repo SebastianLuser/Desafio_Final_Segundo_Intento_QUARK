@@ -23,6 +23,7 @@ public:
 private:
 	IView* m_view = nullptr;
 	list<Loan*> loans;
+	int aa;
 };
 
 #endif

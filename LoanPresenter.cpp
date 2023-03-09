@@ -54,6 +54,7 @@ void LoanPresenter::printLoanList() {
 			m_view->showText("		ID: " + s07);
 		}
 		else if(loan->getMemberVIP()) {
+			int aa;
 			string s08 = loan->getMemberVIP()->getName();
 			string s09 = loan->getMemberVIP()->getLastname();
 			string s10 = to_string(loan->getMemberVIP()->getIdentificationNumber());
