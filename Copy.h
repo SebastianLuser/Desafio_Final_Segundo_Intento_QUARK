@@ -14,7 +14,6 @@ public:
 	string getLocation();
 private:
 	bool available = true;
-	Book* book;
 	int editionNumber;
 	string location;
 };

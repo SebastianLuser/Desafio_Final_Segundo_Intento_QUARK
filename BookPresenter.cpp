@@ -35,11 +35,12 @@ void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool
 			m_view->showText("Ya existe un Ejemplar con la correspondiente locacion");
 		}
 		else {
-			Book* bookaux;
+			this->getBook(ISBN)->setCopyList(editionNumber, location, available);
+
+			/*Book* bookaux;
 			bookaux = this->getBook(ISBN);
-			list<Copy*> copyaux = bookaux->getCopyList();
-			copyaux.push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
-			/*bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));*/
+			bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
+			this->getBook(ISBN)->getCopyList() = bookaux->getCopyList();*/
 		}
 	}
 	else {
@@ -113,8 +114,7 @@ void BookPresenter::printBook(int x) {
 void BookPresenter::printCopyList(int ISBN) {
 	for (Book* book : this->books) {
 		if (book->getISBN() == ISBN) {
-			list<Copy*> copyaux = book->getCopyList();
-			for (Copy* copy : copyaux) {
+			for (Copy* copy : book->getCopyList()) {
 				string s01 = copy->getName();
 				string s02 = copy->getAuthor();
 				string s03 = to_string(copy->getISBN());

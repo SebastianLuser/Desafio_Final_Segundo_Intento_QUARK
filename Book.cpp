@@ -24,3 +24,8 @@ int Book::getISBN() {
 list<Copy*> Book::getCopyList() {
 	return this->copyList;
 }
+
+void Book::setCopyList(int editionNumber, string location, bool available) {
+	Copy* copyaux = new Copy(this->name, this->author, this->ISBN, editionNumber, location, available);
+	this->copyList.push_back(copyaux);
+};
