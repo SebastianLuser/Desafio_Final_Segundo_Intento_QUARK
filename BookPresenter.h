@@ -22,11 +22,9 @@ public:
 	Book* getBook(int ISBN);
 	Copy* getCopy(string location);
 	list<Book*> getBooks();
-	list<Copy*> getCopies();
 private:
 	IView* m_view = nullptr;
 	list<Book*> books;
-	list<Copy*> copies;
 };
 
 #endif

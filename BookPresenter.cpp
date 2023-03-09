@@ -36,11 +36,6 @@ void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool
 		}
 		else {
 			this->getBook(ISBN)->setCopyList(editionNumber, location, available);
-
-			/*Book* bookaux;
-			bookaux = this->getBook(ISBN);
-			bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
-			this->getBook(ISBN)->getCopyList() = bookaux->getCopyList();*/
 		}
 	}
 	else {
@@ -78,11 +73,6 @@ Book* BookPresenter::getBook(int ISBN) {
 list<Book*>BookPresenter::getBooks() {
 	return this->books;
 }
-
-list<Copy*>BookPresenter::getCopies() {
-	return this->copies;
-}
-
 
 void BookPresenter::printBookList() {
 	for (Book* book : this->books) {
@@ -134,11 +124,11 @@ void BookPresenter::printCopyList(int ISBN) {
 void BookPresenter::printCopy(int ISBN, int edNr) {
 	for (Book* book : this->books) {
 		if (book->getISBN() == ISBN) {
-			for (Copy* copy : this->copies) {
+			for (Copy* copy : book->getCopyList()) {
 				if (copy->getEditionNumber() == edNr) {
-					string s01 = book->getName();
-					string s02 = book->getAuthor();
-					string s03 = to_string(book->getISBN());
+					string s01 = copy->getName();
+					string s02 = copy->getAuthor();
+					string s03 = to_string(copy->getISBN());
 					string s04 = to_string(copy->getEditionNumber());
 					string s05 = copy->getLocation();
 					m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
