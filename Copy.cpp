@@ -2,8 +2,7 @@
 #include "Book.h"
 #include <string>
 
-Copy::Copy(Book* book, int editionNumber, string location, bool available) {
-	this->book = book;
+Copy::Copy(string name, string author, int ISBN, int editionNumber, string location, bool available): Book(name, author, ISBN) {
 	this->editionNumber = editionNumber;
 	this->location = location;
 	this->available = available;

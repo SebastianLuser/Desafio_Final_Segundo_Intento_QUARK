@@ -5,10 +5,10 @@
 #include <string>
 using namespace std;
 
-class Copy {
+class Copy : public Book {
 
 public:
-	Copy(Book* book, int editionNumber, string location, bool available);
+	Copy(string name, string author, int ISBN, int editionNumber, string location, bool available);
 	int getEditionNumber();
 	int getAvailable();
 	string getLocation();
