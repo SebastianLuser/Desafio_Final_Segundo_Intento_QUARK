@@ -9,7 +9,6 @@ using namespace std;
 
 class Member {
 
-friend class MemberVIP;
 public:
 	Member(string name,string lastname,int identificationNumber);
 	string getName();
