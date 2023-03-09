@@ -18,3 +18,7 @@ string Copy::getLocation() {
 int Copy::getAvailable() {
 	return available;
 }
+
+void Copy::setAvailable(bool available) {
+	this->available = available;
+};

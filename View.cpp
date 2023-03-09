@@ -82,47 +82,6 @@ void View::startMenu() {
 		default:
 			throw this->inputI;
 		}
-		/*if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4 || this->inputI == 5 || this->inputI == 6 || this->inputI == 7 || this->inputI == 8) {
-			if (this->inputI == 1) {
-				system("cls");
-				memberCreateMenu();
-			}
-			if (this->inputI == 2) {
-				system("cls");
-				bookCreateMenu();
-			}
-			if (this->inputI == 3) {
-				system("cls");
-				copyCreateMenu();
-			}
-			if (this->inputI == 4) {
-				system("cls");
-				memberLoginMenu();
-			}
-			if (this->inputI == 5) {
-				system("cls");
-				bookPresenter->printBookList();
-				startMenu();
-			}
-			if (this->inputI == 6) {
-				system("cls");
-				int isbn;
-				cin >> isbn;
-				bookPresenter->printCopyList(isbn);
-				startMenu();
-			}
-			if (this->inputI == 7) {
-				system("cls");
-				loanPresenter->printLoanList();
-				startMenu();
-			}
-			if (this->inputI == 8) {
-				EXIT_SUCCESS;
-			}
-		}
-		else {
-			throw this->inputI;
-		}*/
 	}
 
 	catch (...) {
@@ -310,7 +269,7 @@ void View::memberMenu(int input, int ID) {
 void View::bookMenu(int ID) {
 	int ISBN;
 	int numE;
-	int pos;
+	string pos;
 	//system("cls");
 	//showText("Ingrese el codigo ISBN del Libro que desea retirar:");
 	//cin >> ISBN;
@@ -320,11 +279,13 @@ void View::bookMenu(int ID) {
 	system("cls");
 	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
 	cin >> pos;
-	/*if (bookPresenter->getCopy(pos)) {
-		if(bookPresenter->getCopy(pos)->getStock() == true){
-			bookPresenter->getCopy(pos)->setStock(false);
-			memberPresenter->withDrawnCopy(bookPresenter->getCopy(pos)->getName(), bookPresenter->getCopy(pos)->getAthor(), bookPresenter->getCopy(pos)->getISBN(), bookPresenter->getCopy(pos)->getEditionNumber(), bookPresenter->getCopy(pos)->getLocation());
-			loanPresenter->setLoan(bookPresenter->getCopy(pos), memberPresenter->getMembers(ID), date);
+	Copy* copyaux = bookPresenter->getCopy(pos);
+	if (copyaux) {
+		if(copyaux->getAvailable() == true){
+			bookPresenter->getCopy(pos)->setAvailable(false);
+			memberPresenter->setWithdrawnCopies(copyaux->getName(), copyaux->getAuthor(), copyaux->getISBN(), copyaux->getEditionNumber(), copyaux->getLocation(), copyaux->getAvailable());
+			memberPresenter->printWithdrawnCopies();
+			/*loanPresenter->setLoan(bookPresenter->getCopy(pos), memberPresenter->getMembers(ID), date);*/
 		}
-	}*/
+	}
 };

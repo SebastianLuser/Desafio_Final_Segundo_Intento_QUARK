@@ -12,6 +12,7 @@ public:
 	int getEditionNumber();
 	int getAvailable();
 	string getLocation();
+	void setAvailable(bool available);
 private:
 	bool available = true;
 	int editionNumber;

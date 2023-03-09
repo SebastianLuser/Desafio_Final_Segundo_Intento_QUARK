@@ -24,6 +24,7 @@ public:
 	list<Member*> getMembers();
 	list<MemberVIP*> getMembersVIP();
 	list <Copy*> getWithdrawnCopies();
+	void printWithdrawnCopies();
 
 private:
 	IView* m_view = nullptr;
