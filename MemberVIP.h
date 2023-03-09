@@ -17,5 +17,5 @@ private:
 	const int cantMax = 3;
 };
 
-#endif#
+#endif
 

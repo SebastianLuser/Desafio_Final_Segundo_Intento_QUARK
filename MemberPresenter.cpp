@@ -1,5 +1,6 @@
 #include "MemberPresenter.h"
 #include "Member.h"
+#include "Copy.h"
 #include "IView.h"
 #include <List>
 #include <iostream>
@@ -76,3 +77,13 @@ void MemberPresenter::printMemberVIP(int x) {
 		}
 	}
 };
+
+
+void MemberPresenter::setWithdrawnCopies(Book* book, int editionNumber, string location, bool available) {
+	this->withdrawnCopies.push_back(new Copy(book, editionNumber, location, available));
+}
+
+
+list<Copy*>MemberPresenter::getWithdrawnCopies() {
+	return this->withdrawnCopies;
+}

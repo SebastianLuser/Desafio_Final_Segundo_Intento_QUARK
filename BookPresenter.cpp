@@ -21,12 +21,26 @@ void BookPresenter::setBooks(string name, string author, int ISBN) {
 	}
 }		
 
-void BookPresenter::setCopys(int ISBN, int editionNumber, string location, int stock) {
+void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool available) {
 	if (getBook(ISBN)) {
-		this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, stock));
+		if (getCopy(location)) {
+			m_view->showText("Ya existe un Ejemplar con la correspondiente locacion");
+		}
+		else {
+			this->copies.push_back(new Copy(this->getBook(ISBN), editionNumber, location, available));
+		}
 	}
 	else {
 		m_view->showText("No existe un Libro con el correspondiente ISBN");
+	}
+
+}
+
+Copy* BookPresenter::getCopy(string location) {
+	for (Copy* copy : this->copies) {
+		if (copy->getLocation() == location) {
+			return copy;
+		}
 	}
 }
 
@@ -42,7 +56,7 @@ list<Book*>BookPresenter::getBooks() {
 	return this->books;
 }
 
-list<Copy*>BookPresenter::getCopys() {
+list<Copy*>BookPresenter::getCopies() {
 	return this->copies;
 }
 
@@ -53,7 +67,7 @@ void BookPresenter::printBookList() {
 		string s02 = book->getAuthor();
 		string s03 = to_string(book->getISBN());
 		m_view->showText("-----------------------------------------------");
-		m_view->showText("El libro ing resadotiene los siguientes datos:");
+		m_view->showText("El libro ingresado tiene los siguientes datos:");
 		m_view->showText("	Nombre: " + s01);
 		m_view->showText("	Autor: " + s02);
 		m_view->showText("	ISBN: " + s03);

@@ -8,12 +8,12 @@ using namespace std;
 class Copy {
 
 public:
-	Copy(Book* book, int editionNumber, string location, int stock);
+	Copy(Book* book, int editionNumber, string location, bool available);
 	int getEditionNumber();
-	int getStock();
+	int getAvailable();
 	string getLocation();
 private:
-	int stock;
+	bool available = true;
 	Book* book;
 	int editionNumber;
 	string location;

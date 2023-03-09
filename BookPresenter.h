@@ -14,14 +14,15 @@ class BookPresenter {
 public:
 	BookPresenter(IView* view);
 	void setBooks(string name, string author, int ISBN);
-	void setCopys(int ISBN, int editionNumber, string location, int stock);
+	void setCopies(int ISBN, int editionNumber, string location, bool available);
 	void printBookList();
 	void printBook(int x);
 	void printCopyList(int ISBN);
 	void printCopy(int ISBN, int edNr);
 	Book* getBook(int ISBN);
+	Copy* getCopy(string location);
 	list<Book*> getBooks();
-	list<Copy*> getCopys();
+	list<Copy*> getCopies();
 private:
 	IView* m_view = nullptr;
 	list<Book*> books;

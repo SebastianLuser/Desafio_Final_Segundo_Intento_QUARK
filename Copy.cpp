@@ -2,11 +2,11 @@
 #include "Book.h"
 #include <string>
 
-Copy::Copy(Book* book, int editionNumber, string location, int stock) {
+Copy::Copy(Book* book, int editionNumber, string location, bool available) {
 	this->book = book;
 	this->editionNumber = editionNumber;
 	this->location = location;
-	this->stock = stock;
+	this->available = available;
 }
 
 int Copy::getEditionNumber() {
@@ -16,6 +16,6 @@ string Copy::getLocation() {
 	return location;
 }
 
-int Copy::getStock() {
-	return stock;
+int Copy::getAvailable() {
+	return available;
 }
