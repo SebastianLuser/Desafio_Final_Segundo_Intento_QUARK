@@ -8,7 +8,6 @@
 
 BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Book*> books;
-	list<Copy*> copies;
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
@@ -29,7 +28,8 @@ void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool
 		else {
 			Book* bookaux;
 			bookaux = this->getBook(ISBN);
-			this->copies.push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
+			auto copyaux = bookaux->getCopyList();
+			copyaux.push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
 			bookaux->getCopyList().push_back(new Copy(bookaux->getName(), bookaux->getAuthor(), bookaux->getISBN(), editionNumber, location, available));
 		}
 	}
@@ -103,10 +103,11 @@ void BookPresenter::printBook(int x) {
 void BookPresenter::printCopyList(int ISBN) {
 	for (Book* book : this->books) {
 		if (book->getISBN() == ISBN) {
-			for (Copy* copy : this->copies) {
-				string s01 = book->getName();
-				string s02 = book->getAuthor();
-				string s03 = to_string(book->getISBN());
+			auto copies = book->getCopyList();
+			for (Copy* copy : copies) {
+				string s01 = copy->getName();
+				string s02 = copy->getAuthor();
+				string s03 = to_string(copy->getISBN());
 				string s04 = to_string(copy->getEditionNumber());
 				string s05 = copy->getLocation();
 				m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");

@@ -79,8 +79,8 @@ void MemberPresenter::printMemberVIP(int x) {
 };
 
 
-void MemberPresenter::setWithdrawnCopies(Book* book, int editionNumber, string location, bool available) {
-	this->withdrawnCopies.push_back(new Copy(book, editionNumber, location, available));
+void MemberPresenter::setWithdrawnCopies(string name, string author, int ISBN, int editionNumber, string location, bool available) {
+	this->withdrawnCopies.push_back(new Copy(name, author, ISBN, editionNumber, location, available));
 }
 
 

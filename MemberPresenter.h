@@ -16,7 +16,7 @@ public:
 	MemberPresenter(IView* view);
 	void setMembers(string name, string lastname, int identificationNumber);
 	void setMembersVIP(string name, string lastname, int identificationNumber, float fee);
-	void setWithdrawnCopies(Book* books, int editionNumber, string location, bool available);
+	void setWithdrawnCopies(string name, string author, int ISBN, int editionNumber, string location, bool available);
 	void printMemberList();
 	void printMemberVIPList();
 	void printMember(int x);

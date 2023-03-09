@@ -5,6 +5,8 @@
 using namespace std;
 
 
+class Copy;
+
 class Book {
 
 friend class Copy;
