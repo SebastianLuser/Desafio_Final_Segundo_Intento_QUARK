@@ -184,7 +184,7 @@ void View::copyCreateMenu() {
 		system("cls");
 		showText("Ingrese stock del Ejemplar:");
 		cin >> cStock;
-		bookPresenter->setCopys(cISBN, cEditionNumber, cLocation.c_str(), cStock);
+		bookPresenter->setCopies(cISBN, cEditionNumber, cLocation.c_str(), cStock);
 		startMenu();
 	}
 	catch (...) {
@@ -262,20 +262,20 @@ void View::bookMenu(int ID) {
 	int ISBN;
 	int numE;
 	int pos;
-	system("cls");
-	showText("Ingrese el codigo ISBN del Libro que desea retirar:");
-	cin >> ISBN;
-	system("cls");
-	showText("Ingrese el numero de edicion del Ejemplar que desea retirar:");
-	cin >> numE;
+	//system("cls");
+	//showText("Ingrese el codigo ISBN del Libro que desea retirar:");
+	//cin >> ISBN;
+	//system("cls");
+	//showText("Ingrese el numero de edicion del Ejemplar que desea retirar:");
+	//cin >> numE;
 	system("cls");
 	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
 	cin >> pos;
-	/*if (bookPresenter->getCopy(ISBN, numE, pos)) {
-		if(bookPresenter->getCopy(ISBN, numE, pos)->getStock() == true){
-			bookPresenter->getCopy(ISBN, numE, pos)->setStock(false);
-			memberPresenter->withDrawnCopy(bookPresenter->getCopy(ISBN, numE, pos));
-			loanPresenter->setLoan(bookPresenter->getCopy(ISBN, numE, pos), memberPresenter->getMembers(ID), date);
+	/*if (bookPresenter->getCopy(pos)) {
+		if(bookPresenter->getCopy(pos)->getStock() == true){
+			bookPresenter->getCopy(pos)->setStock(false);
+			memberPresenter->withDrawnCopy(bookPresenter->getCopy(pos)->getName(), bookPresenter->getCopy(pos)->getAthor(), bookPresenter->getCopy(pos)->getISBN(), bookPresenter->getCopy(pos)->getEditionNumber(), bookPresenter->getCopy(pos)->getLocation());
+			loanPresenter->setLoan(bookPresenter->getCopy(pos), memberPresenter->getMembers(ID), date);
 		}
 	}*/
 };

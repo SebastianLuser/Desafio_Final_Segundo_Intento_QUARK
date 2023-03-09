@@ -19,3 +19,7 @@ string Book::getAuthor() {
 int Book::getISBN() {
 	return this->ISBN;
 }
+
+list<Copy*> Book::getCopyList() {
+	return this->copyList;
+}
