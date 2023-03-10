@@ -14,15 +14,15 @@ MemberPresenter::MemberPresenter(IView* view) : m_view(view) {
 bool MemberPresenter::verifyAvailable(int identificationNumber) {
 	for (Member* member : this->members) {
 		if (member->getIdentificationNumber() == identificationNumber) {
-			return true;
+			return false;
 		}
 	}
 	for (MemberVIP* memberVIP : this->membersVIP) {
 		if (memberVIP->getIdentificationNumber() == identificationNumber) {
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 void MemberPresenter::setMembers(string name, string lastname, int identificationNumber) {
