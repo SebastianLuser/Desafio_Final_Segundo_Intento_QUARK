@@ -21,3 +21,7 @@ string Member::getLastname() {
 int Member::getIdentificationNumber(){
 	return identificationNumber;
 }
+
+void Member::setWithdrawCopyList(Copy* copy) {
+	this->retiredCopies.push_back(copy);
+};

@@ -14,9 +14,10 @@ class MemberPresenter {
 
 public:
 	MemberPresenter(IView* view);
+	bool verifyAvailable(int identificationNumber);
 	void setMembers(string name, string lastname, int identificationNumber);
 	void setMembersVIP(string name, string lastname, int identificationNumber, float fee);
-	void setWithdrawnCopies(string name, string author, int ISBN, int editionNumber, string location, bool available);
+	void setWithdrawnCopies(Copy* copy, int identificationNumber, int typeM);
 	void printMemberList();
 	void printMemberVIPList();
 	void printMember(int x);
@@ -25,6 +26,10 @@ public:
 	list<MemberVIP*> getMembersVIP();
 	list <Copy*> getWithdrawnCopies();
 	void printWithdrawnCopies();
+	int getTypeMember();
+	void CheckCant(int cantMax);
+	Member* getMember(int identificationNumber);
+	MemberVIP* getMemberVIP(int identificationNumber);
 
 private:
 	IView* m_view = nullptr;

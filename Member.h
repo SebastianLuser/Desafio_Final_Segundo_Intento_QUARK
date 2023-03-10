@@ -14,12 +14,13 @@ public:
 	string getName();
 	string getLastname();
 	int getIdentificationNumber();
+	void setWithdrawCopyList(Copy* copy);
 	
 protected:
 	string name;
 	string lastname;
 	int identificationNumber;
-	list<Book*> retiredBooks;
+	list<Copy*> retiredCopies;
 
 private :
 	const int cantMax = 1;

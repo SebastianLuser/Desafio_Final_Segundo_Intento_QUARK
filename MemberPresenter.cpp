@@ -10,6 +10,21 @@ MemberPresenter::MemberPresenter(IView* view) : m_view(view) {
 	list<Member*> members;
 	list<MemberVIP*> membersVIP;
 }
+
+bool MemberPresenter::verifyAvailable(int identificationNumber) {
+	for (Member* member : this->members) {
+		if (member->getIdentificationNumber() == identificationNumber) {
+			return true;
+		}
+	}
+	for (MemberVIP* memberVIP : this->membersVIP) {
+		if (memberVIP->getIdentificationNumber() == identificationNumber) {
+			return true;
+		}
+	}
+	return false;
+}
+
 void MemberPresenter::setMembers(string name, string lastname, int identificationNumber) {
 	this->members.push_back(new Member(name, lastname,  identificationNumber));
 }
@@ -79,14 +94,50 @@ void MemberPresenter::printMemberVIP(int x) {
 };
 
 
-void MemberPresenter::setWithdrawnCopies(string name, string author, int ISBN, int editionNumber, string location, bool available) {
-	this->withdrawnCopies.push_back(new Copy(name, author, ISBN, editionNumber, location, available));
+Member* MemberPresenter::getMember(int identificationNumber) {
+	for (Member* member : this->members) {
+		if (member->getIdentificationNumber() == identificationNumber) {
+			return member;
+		}
+	}
+}
+
+MemberVIP* MemberPresenter::getMemberVIP(int identificationNumber) {
+	for (MemberVIP* memberVIP : this->membersVIP) {
+		if (memberVIP->getIdentificationNumber() == identificationNumber) {
+			return memberVIP;
+		}
+	}
+}
+
+void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber, int typeM) {
+	if (typeM == 1) {
+		this->getMember(identificationNumber)->setWithdrawCopyList(copy);
+	}
+	else if (typeM == 2) {
+		this->getMemberVIP(identificationNumber)->setWithdrawCopyList(copy);
+	}
 }
 
 
 list<Copy*>MemberPresenter::getWithdrawnCopies() {
 	return this->withdrawnCopies;
 }
+
+//int MemberPresenter::getTypeMember() {
+//
+//	return cantMax;
+//}
+//
+//void MemberPresenter::CheckCant(int cantMax) {
+//	for (Copy* copy : withdrawnCopies) {
+//		if (cantMax <= withdrawnCopies.size()) {
+//			
+//		}
+//
+//	}
+//}
+
 
 void MemberPresenter::printWithdrawnCopies() {
 	m_view->showText("---------------------------------------------------");
