@@ -95,11 +95,14 @@ void MemberPresenter::printMemberVIP(int x) {
 			string s02 = memberVIP->getLastname();
 			string s03 = to_string(memberVIP->getIdentificationNumber());
 			string s04 = to_string(memberVIP->getFee());
+			string s05 = to_string(memberVIP->getCantMax());
 			m_view->showText("El socio VIP ingresado tiene los siguientes datos:");
 			m_view->showText("	Nombre: " + s01);
 			m_view->showText("	Apellido: " + s02);
 			m_view->showText("	Numero de identificacion: " + s03);
 			m_view->showText("	Costo mensual: $" + s04);
+			m_view->showText("	CantMax value" + s05);
+			cout << memberVIP->CheckCant();
 		}
 	}
 };
