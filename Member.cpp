@@ -7,6 +7,7 @@ Member::Member(string name, string lastname, int identificationNumber){
 	this->name = name;
 	this->lastname = lastname;
 	this->identificationNumber = identificationNumber;
+	this->cantMax = 1;
 }
 
 string Member::getName() {

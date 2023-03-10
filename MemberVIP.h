@@ -14,7 +14,6 @@ public:
 
 private:
 	float fee;
-	const int cantMax = 3;
 };
 
 #endif

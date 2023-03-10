@@ -24,9 +24,8 @@ protected:
 	string lastname;
 	int identificationNumber;
 	list<Copy*> withdrawCopies;
+	int cantMax;
 
-private :
-	const int cantMax = 1;
 };
 
 #endif#
