@@ -20,8 +20,8 @@ public:
 	void bookCreateMenu();
 	void copyCreateMenu();
 	void memberLoginMenu();
-	void memberMenu(int typeM, int ID);
-	void bookMenu(int typeM, int ID);
+	void memberMenu(int ID);
+	void bookMenu(int ID);
 	virtual ~View() = default;
 private:
 	int inputI;

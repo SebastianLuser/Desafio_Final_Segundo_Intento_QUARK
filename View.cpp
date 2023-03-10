@@ -112,23 +112,33 @@ void View::memberCreateMenu() {
 		system("cls");
 		showText("Ingrese el ID del socio:");
 		cin >> mID;
+		while(memberPresenter->verifyAvailable(mID) == 0 || mID == 0) {
+			system("cls");
+			showText("--------------------------------------------------------------------------------------------------------------");
+			showText("El ID ingresado ya esta registrado, porfavor ingrese un ID diferente o ingrese 0 para volver al menu de inicio");
+			showText("--------------------------------------------------------------------------------------------------------------");
+			cin >> mID;
+			if (mID == 0) {
+				startMenu();
+			}
+		}
 		system("cls");
 		showText("Ingrese si el socio es VIP:");
-		showText("1.Si");
-		showText("2.No");
+		showText("1.No");
+		showText("2.Si");
 		cin >> inputI;
 		if (this->inputI == 1 || this->inputI == 2) {
 			if (this->inputI == 1) {
+				system("cls");
+				memberPresenter->setMembers(mName.c_str(), mLastName.c_str(), mID);
+				startMenu();
+			}
+			if (this->inputI == 2) {
 				system("cls");
 				system("cls");
 				showText("Ingrese el costo mensual de la membresia VIP:");
 				cin >> mFee;
 				memberPresenter->setMembersVIP(mName.c_str(), mLastName.c_str(), mID, mFee);
-				startMenu();
-			}
-			if (this->inputI == 2) {
-				system("cls");
-				memberPresenter->setMembers(mName.c_str(), mLastName.c_str(), mID);
 				startMenu();
 			}
 		}
@@ -208,36 +218,31 @@ void View::copyCreateMenu() {
 };
 
 void View::memberLoginMenu() {
-	int typeM;
-	int ID;
+	int mID;
 	system("cls");
-	showText("Desea ingrear a un socio Clasico o VIP:");
-	showText("	1.Clasico");
-	showText("	2.VIP");
-	cin >> typeM;
-	if (typeM == 1 || typeM == 2) {
-		if (typeM == 1) {
-			system("cls");
-			showText("Ingrese el ID Clasico al que se desea ingresar:");
-			cin >> ID;
-			memberMenu(typeM,ID);
-		}
-		if (typeM == 2) {
-			system("cls");
-			showText("Ingrese el ID VIP al que se desea ingresar:");
-			cin >> ID;
-			memberMenu(typeM, ID);
+	showText("Ingrese el ID al que se desea ingresar:");
+	cin >> mID;
+	while (memberPresenter->verifyAvailable(mID) == 0) {
+		system("cls");
+		showText("-----------------------------------------------------------------------------------");
+		showText("El ID ingresado no existe o no esta registrado.");
+		showText("Porfavor ingrese un ID diferente o ingrese 0 para volver al menu de inicio");
+		showText("-----------------------------------------------------------------------------------");
+		cin >> mID;
+		if (mID == 0) {
+			startMenu();
 		}
 	}
+	memberMenu(mID);
 };
 
-void View::memberMenu(int typeM, int ID) {
+void View::memberMenu(int mID) {
 	system("cls");
-	if (typeM == 1) {
-		memberPresenter->printMember(ID);
+	if (memberPresenter->verifyAvailable(mID) == 1) {
+		memberPresenter->printMember(mID);
 	}
-	else if(typeM == 2) {
-		memberPresenter->printMemberVIP(ID);
+	else if(memberPresenter->verifyAvailable(mID) == 2) {
+		memberPresenter->printMemberVIP(mID);
 	}
 	showText("");
 	showText("Elija una de las siguientes acciones: ");
@@ -249,7 +254,7 @@ void View::memberMenu(int typeM, int ID) {
 	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
 		if (this->inputI == 1) {
 			system("cls");
-			bookMenu(typeM, ID);
+			bookMenu(mID);
 		}
 		if (this->inputI == 2) {
 			system("cls");
@@ -266,17 +271,11 @@ void View::memberMenu(int typeM, int ID) {
 	}
 };
 
-void View::bookMenu(int typeM, int ID) {
+void View::bookMenu(int mID) {
 	int ISBN;
 	int numE;
 	string pos;
 	string date = "Today";
-	//system("cls");
-	//showText("Ingrese el codigo ISBN del Libro que desea retirar:");
-	//cin >> ISBN;
-	//system("cls");
-	//showText("Ingrese el numero de edicion del Ejemplar que desea retirar:");
-	//cin >> numE;
 	system("cls");
 	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
 	cin >> pos;
@@ -284,7 +283,7 @@ void View::bookMenu(int typeM, int ID) {
 	if (copyaux) {
 		if(copyaux->getAvailable() == true){
 			bookPresenter->getCopy(pos)->setAvailable(false);
-			memberPresenter->setWithdrawnCopies(copyaux, ID, typeM);
+			memberPresenter->setWithdrawnCopies(copyaux, mID);
 			memberPresenter->printWithdrawnCopies();
 			/*loanPresenter->setLoan(copyaux, memberPresenter->getMembers(ID), date);*/
 		}
