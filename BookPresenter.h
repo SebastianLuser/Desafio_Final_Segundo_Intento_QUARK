@@ -18,7 +18,7 @@ public:
 	void printBookList();
 	void printBook(int x);
 	void printCopyList(int ISBN);
-	void printCopy(int ISBN, int edNr);
+	void printCopy(int ISBN, string location);
 	Book* getBook(int ISBN);
 	Copy* getCopy(string location);
 	list<Book*> getBooks();

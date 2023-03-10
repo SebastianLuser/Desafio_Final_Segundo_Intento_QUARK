@@ -14,7 +14,6 @@ string Member::getName() {
 }
 
 string Member::getLastname() {
-
 	return lastname;
 }
 
@@ -28,6 +27,12 @@ void Member::setWithdrawCopyList(Copy* copy) {
 
 list<Copy*> Member::getWithdrawCopyList() {
 	return this->withdrawCopies;
+}
+
+bool Member::CheckCant() {
+	if (cantMax < withdrawCopies.size()) {
+		return true;
+	}
 }
 
 int Member::getCantMax() {

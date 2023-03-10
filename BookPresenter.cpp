@@ -55,11 +55,6 @@ Copy* BookPresenter::getCopy(string location) {
 		}
 	}
 	return 0;
-	/*for (Copy* copy : this->copies) {
-		if (copy->getLocation() == location) {
-			return copy;
-		}
-	}*/
 }
 
 Book* BookPresenter::getBook(int ISBN) {
@@ -105,27 +100,7 @@ void BookPresenter::printCopyList(int ISBN) {
 	for (Book* book : this->books) {
 		if (book->getISBN() == ISBN) {
 			for (Copy* copy : book->getCopyList()) {
-				string s01 = copy->getName();
-				string s02 = copy->getAuthor();
-				string s03 = to_string(copy->getISBN());
-				string s04 = to_string(copy->getEditionNumber());
-				string s05 = copy->getLocation();
-				m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
-				m_view->showText("	Nombre: " + s01);
-				m_view->showText("	Autor: " + s02);
-				m_view->showText("	ISBN: " + s03);
-				m_view->showText("	Numero de Edicion: " + s04);
-				m_view->showText("	Locacion: " + s05);
-			}
-		}
-	}
-}
-
-void BookPresenter::printCopy(int ISBN, int edNr) {
-	for (Book* book : this->books) {
-		if (book->getISBN() == ISBN) {
-			for (Copy* copy : book->getCopyList()) {
-				if (copy->getEditionNumber() == edNr) {
+				if (copy->getAvailable() == true) {
 					string s01 = copy->getName();
 					string s02 = copy->getAuthor();
 					string s03 = to_string(copy->getISBN());
@@ -137,6 +112,36 @@ void BookPresenter::printCopy(int ISBN, int edNr) {
 					m_view->showText("	ISBN: " + s03);
 					m_view->showText("	Numero de Edicion: " + s04);
 					m_view->showText("	Locacion: " + s05);
+				}
+				if (book->getCopyList().empty()) {
+					m_view->showText("No hay ejemplares disponibles del libro seleccionado");
+				}
+			}
+		}
+	}
+}
+
+void BookPresenter::printCopy(int ISBN, string location) {
+	for (Book* book : this->books) {
+		if (book->getISBN() == ISBN) {
+			for (Copy* copy : book->getCopyList()) {
+				if (copy->getLocation() == location) {
+					if (copy->getAvailable() == true) {
+						string s01 = copy->getName();
+						string s02 = copy->getAuthor();
+						string s03 = to_string(copy->getISBN());
+						string s04 = to_string(copy->getEditionNumber());
+						string s05 = copy->getLocation();
+						m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
+						m_view->showText("	Nombre: " + s01);
+						m_view->showText("	Autor: " + s02);
+						m_view->showText("	ISBN: " + s03);
+						m_view->showText("	Numero de Edicion: " + s04);
+						m_view->showText("	Locacion: " + s05);
+					}
+					else {
+						m_view->showText("Este ejemplar no esta disponible");
+					}
 				}
 			}
 		}

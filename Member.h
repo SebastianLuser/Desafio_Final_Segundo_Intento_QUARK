@@ -17,6 +17,7 @@ public:
 	int getIdentificationNumber();
 	void setWithdrawCopyList(Copy* copy);
 	list<Copy*>getWithdrawCopyList();
+	bool CheckCant();
 	
 protected:
 	string name;
