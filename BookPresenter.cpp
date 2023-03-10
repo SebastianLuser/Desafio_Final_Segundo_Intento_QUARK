@@ -17,6 +17,10 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	string s05 = "A550";
 	bool s06 = true;
 	setCopies(s03, s04, s05, s06);
+	int s07 = 1;
+	string s08 = "B550";
+	bool s09 = true;
+	setCopies(s03, s07, s08, s09);
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {

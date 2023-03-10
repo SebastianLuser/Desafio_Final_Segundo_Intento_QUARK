@@ -238,7 +238,7 @@ void View::memberLoginMenu() {
 
 void View::memberMenu(int mID) {
 	system("cls");
-	if (memberPresenter->verifyAvailable(mID) == 1) {
+ 	if (memberPresenter->verifyAvailable(mID) == 1) {
 		memberPresenter->printMember(mID);
 	}
 	else if(memberPresenter->verifyAvailable(mID) == 2) {
@@ -248,21 +248,33 @@ void View::memberMenu(int mID) {
 	showText("Elija una de las siguientes acciones: ");
 	showText("	1. Realizar un prestamo");
 	showText("	2. Mostrar ejemplares retirados");
-	showText("	3. Devolver un libro");
+	showText("	3. Devolver un Ejemplar");
 	showText("	4. Volver al menu inicial");
 	cin >> this->inputI;
 	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
 		if (this->inputI == 1) {
 			system("cls");
-			bookMenu(mID);
+			if (memberPresenter->CheckAvailability(mID)) {
+				bookMenu(mID);
+			}
+			else {
+				showText("El socio no puede retirar mas ejemplares.");
+			}
 		}
 		if (this->inputI == 2) {
 			system("cls");
-
+			memberPresenter->printWithdrawnCopies(mID);
+			while (this->inputI != 0) {
+				showText("----------------------------------");
+				showText("Presiona 0 para elegir otra accion");
+				showText("----------------------------------");
+				cin >> inputI;		
+			}
+			memberMenu(mID);
 		}
 		if (this->inputI == 3) {
 			system("cls");
-
+			returnCopyMenu(mID);
 		}
 		if (this->inputI == 4) {
 			system("cls");
@@ -279,19 +291,47 @@ void View::bookMenu(int mID) {
 	system("cls");
 	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
 	cin >> loc;
-	Copy* copyaux = bookPresenter->getCopy(loc);
-	if (copyaux) {
-		if(copyaux->getAvailable() == true){
+	if (bookPresenter->getCopy(loc)) {
+		if(bookPresenter->getCopy(loc)->getAvailable() == true){
 			bookPresenter->getCopy(loc)->setAvailable(false);
-			memberPresenter->setWithdrawnCopies(copyaux, mID);
+			memberPresenter->setWithdrawnCopies(bookPresenter->getCopy(loc), mID);
 			/*memberPresenter->printWithdrawnCopies(mID);*/
 			if (memberPresenter->verifyAvailable(mID) == 1) {
-				loanPresenter->setLoan(copyaux, memberPresenter->getMember(mID), date);
+				loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMember(mID), date);
 			}
 			if (memberPresenter->verifyAvailable(mID) == 2) {
-				loanPresenter->setLoan(copyaux, memberPresenter->getMemberVIP(mID), date);
+				loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMemberVIP(mID), date);
 			}
-			loanPresenter->printLoanList();
+			/*loanPresenter->printLoanList();*/
 		}
 	}
+	startMenu();
+};
+
+void View::returnCopyMenu(int mID) {
+	int ISBN;
+	int numE;
+	string loc;
+	string date = "Today";
+	system("cls");
+	memberPresenter->printWithdrawnCopies(mID);
+	showText("Ingrese la locacion del Ejemplar que desea devolver:");
+	cin >> loc;
+	while (bookPresenter->getCopy(loc) == 0) {
+		system("cls");
+		memberPresenter->printWithdrawnCopies(mID);
+		showText("-----------------------------------------------------------------");
+		showText("No se encontro ningun Ejemplar con esa locacion en la biblioteca");
+		showText("-----------------------------------------------------------------");
+		cin >> loc;
+	}
+	bookPresenter->getCopy(loc)->setAvailable(true);
+	memberPresenter->removeWithdrawnCopies(bookPresenter->getCopy(loc), mID);
+	if (memberPresenter->verifyAvailable(mID) == 1) {
+		loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMember(mID), date);
+	}
+	if (memberPresenter->verifyAvailable(mID) == 2) {
+		loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMemberVIP(mID), date);
+	}	
+	startMenu();
 };
