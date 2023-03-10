@@ -208,35 +208,35 @@ void View::copyCreateMenu() {
 };
 
 void View::memberLoginMenu() {
-	int input;
+	int typeM;
 	int ID;
 	system("cls");
 	showText("Desea ingrear a un socio Clasico o VIP:");
 	showText("	1.Clasico");
 	showText("	2.VIP");
-	cin >> input;
-	if (input == 1 || input == 2) {
-		if (input == 1) {
+	cin >> typeM;
+	if (typeM == 1 || typeM == 2) {
+		if (typeM == 1) {
 			system("cls");
 			showText("Ingrese el ID Clasico al que se desea ingresar:");
 			cin >> ID;
-			memberMenu(input,ID);
+			memberMenu(typeM,ID);
 		}
-		if (input == 2) {
+		if (typeM == 2) {
 			system("cls");
 			showText("Ingrese el ID VIP al que se desea ingresar:");
 			cin >> ID;
-			memberMenu(input, ID);
+			memberMenu(typeM, ID);
 		}
 	}
 };
 
-void View::memberMenu(int input, int ID) {
+void View::memberMenu(int typeM, int ID) {
 	system("cls");
-	if (input == 1) {
+	if (typeM == 1) {
 		memberPresenter->printMember(ID);
 	}
-	else if(input == 2) {
+	else if(typeM == 2) {
 		memberPresenter->printMemberVIP(ID);
 	}
 	showText("");
@@ -249,7 +249,7 @@ void View::memberMenu(int input, int ID) {
 	if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
 		if (this->inputI == 1) {
 			system("cls");
-			bookMenu(ID);
+			bookMenu(typeM, ID);
 		}
 		if (this->inputI == 2) {
 			system("cls");
@@ -266,10 +266,11 @@ void View::memberMenu(int input, int ID) {
 	}
 };
 
-void View::bookMenu(int ID) {
+void View::bookMenu(int typeM, int ID) {
 	int ISBN;
 	int numE;
 	string pos;
+	string date = "Today";
 	//system("cls");
 	//showText("Ingrese el codigo ISBN del Libro que desea retirar:");
 	//cin >> ISBN;
@@ -283,9 +284,9 @@ void View::bookMenu(int ID) {
 	if (copyaux) {
 		if(copyaux->getAvailable() == true){
 			bookPresenter->getCopy(pos)->setAvailable(false);
-			memberPresenter->setWithdrawnCopies(copyaux->getName(), copyaux->getAuthor(), copyaux->getISBN(), copyaux->getEditionNumber(), copyaux->getLocation(), copyaux->getAvailable());
+			memberPresenter->setWithdrawnCopies(copyaux, ID, typeM);
 			memberPresenter->printWithdrawnCopies();
-			/*loanPresenter->setLoan(bookPresenter->getCopy(pos), memberPresenter->getMembers(ID), date);*/
+			/*loanPresenter->setLoan(copyaux, memberPresenter->getMembers(ID), date);*/
 		}
 	}
 };
