@@ -112,7 +112,7 @@ void View::memberCreateMenu() {
 		system("cls");
 		showText("Ingrese el ID del socio:");
 		cin >> mID;
-		while(memberPresenter->verifyAvailable(mID) == 0 || mID == 0) {
+		while(memberPresenter->verifyAvailable(mID) != 0 || mID == 0) {
 			system("cls");
 			showText("--------------------------------------------------------------------------------------------------------------");
 			showText("El ID ingresado ya esta registrado, porfavor ingrese un ID diferente o ingrese 0 para volver al menu de inicio");
