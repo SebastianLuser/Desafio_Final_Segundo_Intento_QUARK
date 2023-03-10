@@ -274,18 +274,24 @@ void View::memberMenu(int mID) {
 void View::bookMenu(int mID) {
 	int ISBN;
 	int numE;
-	string pos;
+	string loc;
 	string date = "Today";
 	system("cls");
 	showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
-	cin >> pos;
-	Copy* copyaux = bookPresenter->getCopy(pos);
+	cin >> loc;
+	Copy* copyaux = bookPresenter->getCopy(loc);
 	if (copyaux) {
 		if(copyaux->getAvailable() == true){
-			bookPresenter->getCopy(pos)->setAvailable(false);
+			bookPresenter->getCopy(loc)->setAvailable(false);
 			memberPresenter->setWithdrawnCopies(copyaux, mID);
-			memberPresenter->printWithdrawnCopies();
-			/*loanPresenter->setLoan(copyaux, memberPresenter->getMembers(ID), date);*/
+			/*memberPresenter->printWithdrawnCopies(mID);*/
+			if (memberPresenter->verifyAvailable(mID) == 1) {
+				loanPresenter->setLoan(copyaux, memberPresenter->getMember(mID), date);
+			}
+			if (memberPresenter->verifyAvailable(mID) == 2) {
+				loanPresenter->setLoan(copyaux, memberPresenter->getMemberVIP(mID), date);
+			}
+			loanPresenter->printLoanList();
 		}
 	}
 };

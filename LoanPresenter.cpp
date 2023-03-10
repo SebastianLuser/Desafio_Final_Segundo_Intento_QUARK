@@ -33,16 +33,18 @@ list<Loan*>LoanPresenter::getLoanList() {
 
 void LoanPresenter::printLoanList() {
 	for (Loan* loan : this->loans) {
-		//string s01 = loan->getCopy()->getName();
-		//string s02 = loan->getCopy()->getAuthor();
-		//string s03 = to_string(loan->getCopy()->getISBN());
+		string s01 = loan->getCopy()->getName();
+		string s02 = loan->getCopy()->getAuthor();
+		string s03 = to_string(loan->getCopy()->getISBN());
+		string s12 = loan->getCopy()->getLocation();
 		string s04 = loan->getDate();
 		m_view->showText("-----------------------------------------------");
 		m_view->showText("El prestamo ingresado tiene los siguientes datos:");
 		m_view->showText("	Ejemplar: ");
-/*		m_view->showText("		Nombre: " + s01);
+		m_view->showText("		Nombre: " + s01);
 		m_view->showText("		Autor: " + s02);
-		m_view->showText("		ISBN: " + s03)*/;
+		m_view->showText("		ISBN: " + s03);
+		m_view->showText("		Posicion: " + s12);
 		m_view->showText("	Fecha: " + s04);
 		if (loan->getMember()) {
 			string s05 = loan->getMember()->getName();
