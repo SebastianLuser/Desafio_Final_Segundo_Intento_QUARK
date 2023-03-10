@@ -14,10 +14,10 @@ class MemberPresenter {
 
 public:
 	MemberPresenter(IView* view);
-	bool verifyAvailable(int identificationNumber);
+	int verifyAvailable(int identificationNumber);
 	void setMembers(string name, string lastname, int identificationNumber);
 	void setMembersVIP(string name, string lastname, int identificationNumber, float fee);
-	void setWithdrawnCopies(Copy* copy, int identificationNumber, int typeM);
+	void setWithdrawnCopies(Copy* copy, int identificationNumber);
 	void printMemberList();
 	void printMemberVIPList();
 	void printMember(int x);

@@ -11,18 +11,18 @@ MemberPresenter::MemberPresenter(IView* view) : m_view(view) {
 	list<MemberVIP*> membersVIP;
 }
 
-bool MemberPresenter::verifyAvailable(int identificationNumber) {
+int  MemberPresenter::verifyAvailable(int identificationNumber) {
 	for (Member* member : this->members) {
 		if (member->getIdentificationNumber() == identificationNumber) {
-			return true;
+			return 1;
 		}
 	}
 	for (MemberVIP* memberVIP : this->membersVIP) {
 		if (memberVIP->getIdentificationNumber() == identificationNumber) {
-			return true;
+			return 2;
 		}
 	}
-	return false;
+	return 0;
 }
 
 void MemberPresenter::setMembers(string name, string lastname, int identificationNumber) {
@@ -110,11 +110,11 @@ MemberVIP* MemberPresenter::getMemberVIP(int identificationNumber) {
 	}
 }
 
-void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber, int typeM) {
-	if (typeM == 1) {
+void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber) {
+	if (verifyAvailable(identificationNumber) == 1) {
 		this->getMember(identificationNumber)->setWithdrawCopyList(copy);
 	}
-	else if (typeM == 2) {
+	else if (verifyAvailable(identificationNumber) == 2) {
 		this->getMemberVIP(identificationNumber)->setWithdrawCopyList(copy);
 	}
 }
