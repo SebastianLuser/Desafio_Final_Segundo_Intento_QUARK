@@ -30,8 +30,11 @@ list<Copy*> Member::getWithdrawCopyList() {
 }
 
 bool Member::CheckCant() {
-	if (cantMax < withdrawCopies.size()) {
+	if (cantMax > withdrawCopies.size()) {
 		return true;
+	}
+	else {
+		return false;
 	}
 }
 

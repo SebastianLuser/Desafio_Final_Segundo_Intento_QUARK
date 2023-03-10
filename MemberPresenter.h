@@ -27,6 +27,7 @@ public:
 	void printWithdrawnCopies(int identificationNumber);
 	Member* getMember(int identificationNumber);
 	MemberVIP* getMemberVIP(int identificationNumber);
+	bool CheckAvailability(int identificationNumber);
 
 private:
 	IView* m_view = nullptr;
