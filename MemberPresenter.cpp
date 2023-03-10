@@ -153,15 +153,6 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 	}
 }
 
-//void MemberPresenter::verifyWithdrawnCopies() {
-//	Member* member;
-//	MemberVIP* memberVIP;
-//	for (Member* member : this->members) {
-//		if (this->CheckCant(memberVIP->getCantMax())) {
-//		}
-//	}
-//}
-
 
 void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 	m_view->showText("---------------------------------------------------");
@@ -187,4 +178,14 @@ void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 		m_view->showText("	Locacion: " + s05);
 	}
 	m_view->showText("---------------------------------------------------");
+}
+
+
+void MemberPresenter::removeWithdrawnCopies(Copy* copy, int identificationNumber) {
+	if (verifyAvailable(identificationNumber) == 1) {
+		this->getMember(identificationNumber)->getWithdrawCopyList().remove(copy);
+	}
+	else if (verifyAvailable(identificationNumber) == 2) {
+		this->getMemberVIP(identificationNumber)->getWithdrawCopyList().remove(copy);
+	}
 }
