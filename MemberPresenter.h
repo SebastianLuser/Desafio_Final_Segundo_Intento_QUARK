@@ -24,10 +24,7 @@ public:
 	void printMemberVIP(int x);
 	list<Member*> getMembers();
 	list<MemberVIP*> getMembersVIP();
-	list <Copy*> getWithdrawnCopies();
-	void printWithdrawnCopies();
-	int getTypeMember();
-	void CheckCant(int cantMax);
+	void printWithdrawnCopies(int identificationNumber);
 	Member* getMember(int identificationNumber);
 	MemberVIP* getMemberVIP(int identificationNumber);
 
@@ -35,7 +32,6 @@ private:
 	IView* m_view = nullptr;
 	list<Member*> members;
 	list<MemberVIP*> membersVIP;
-	list <Copy*> withdrawnCopies;
 };
 
 #endif

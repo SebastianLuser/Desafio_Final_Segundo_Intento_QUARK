@@ -120,29 +120,27 @@ void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber) 
 }
 
 
-list<Copy*>MemberPresenter::getWithdrawnCopies() {
-	return this->withdrawnCopies;
-}
-
-//int MemberPresenter::getTypeMember() {
-//
-//	return cantMax;
-//}
-//
-//void MemberPresenter::CheckCant(int cantMax) {
-//	for (Copy* copy : withdrawnCopies) {
-//		if (cantMax <= withdrawnCopies.size()) {
-//			
+//void MemberPresenter::verifyWithdrawnCopies() {
+//	Member* member;
+//	MemberVIP* memberVIP;
+//	for (Member* member : this->members) {
+//		if (this->CheckCant(memberVIP->getCantMax())) {
 //		}
-//
 //	}
 //}
 
 
-void MemberPresenter::printWithdrawnCopies() {
+void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 	m_view->showText("---------------------------------------------------");
 	m_view->showText("Los ejemplares retirados por este Socio son:");
-	for (Copy* copy : this->withdrawnCopies) {
+	list<Copy*> listAux;
+	if (this->verifyAvailable(identificationNumber) == 1) {
+		listAux =  this->getMember(identificationNumber)->getWithdrawCopyList();
+	}
+	if (this->verifyAvailable(identificationNumber) == 2) {
+		listAux = this->getMemberVIP(identificationNumber)->getWithdrawCopyList();
+	}
+	for (Copy* copy : listAux) {
 		string s01 = copy->getName();
 		string s02 = copy->getAuthor();
 		string s03 = to_string(copy->getISBN());

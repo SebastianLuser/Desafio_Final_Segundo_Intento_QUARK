@@ -23,5 +23,13 @@ int Member::getIdentificationNumber(){
 }
 
 void Member::setWithdrawCopyList(Copy* copy) {
-	this->retiredCopies.push_back(copy);
+	this->withdrawCopies.push_back(copy);
 };
+
+list<Copy*> Member::getWithdrawCopyList() {
+	return this->withdrawCopies;
+}
+
+int Member::getCantMax() {
+	return cantMax;
+}

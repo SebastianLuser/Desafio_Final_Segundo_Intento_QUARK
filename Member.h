@@ -13,14 +13,16 @@ public:
 	Member(string name,string lastname,int identificationNumber);
 	string getName();
 	string getLastname();
+	int getCantMax();
 	int getIdentificationNumber();
 	void setWithdrawCopyList(Copy* copy);
+	list<Copy*>getWithdrawCopyList();
 	
 protected:
 	string name;
 	string lastname;
 	int identificationNumber;
-	list<Copy*> retiredCopies;
+	list<Copy*> withdrawCopies;
 
 private :
 	const int cantMax = 1;
