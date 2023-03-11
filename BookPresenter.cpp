@@ -137,6 +137,7 @@ void BookPresenter::printBook(int x) {
 }
 
 void BookPresenter::printCopyList(int ISBN) {
+	int check = 0;
 	try {
 		for (Book* book : this->books) {
 			if (book->getISBN() == ISBN) {
@@ -156,9 +157,15 @@ void BookPresenter::printCopyList(int ISBN) {
 						m_view->showText("	Locacion: " + s05);
 						m_view->showText("--------------------------------------------------");
 					}
+					else {
+						check++;
+					}
 					if (book->getCopyList().empty()) {
 						throw("No hay ejemplares disponibles del libro seleccionado");
 					}
+				}
+				if (check == 0) {
+					throw ("No hay ejemplares disponibles del libro seleccionado");
 				}
 			}
 		}
