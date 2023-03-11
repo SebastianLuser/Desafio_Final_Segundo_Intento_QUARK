@@ -134,6 +134,24 @@ void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber) 
 }
 
 
+bool MemberPresenter::checkWithdrawCopy(string location, int identificationNumber) {
+	if (verifyAvailable(identificationNumber) == 1) {
+		for (Copy* copy : this->getMember(identificationNumber)->getWithdrawCopyList()) {
+			if (copy->getLocation() == location) {
+				return true;
+			}
+		}
+	}
+	else if (verifyAvailable(identificationNumber) == 2) {
+		for (Copy* copy : this->getMemberVIP(identificationNumber)->getWithdrawCopyList()) {
+			if (copy->getLocation() == location) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 bool MemberPresenter::CheckAvailability(int identificationNumber) {
 	try {
 		if (verifyAvailable(identificationNumber) == 1) {
