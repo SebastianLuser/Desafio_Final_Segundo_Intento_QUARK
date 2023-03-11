@@ -178,9 +178,15 @@ void View::bookCreateMenu() {
 		system("cls");
 		showText("Ingrese el nombre del libro:");
 		cin >> bName;
+		if (any_of(bName.begin(), bName.end(), [](char c) { return isdigit(c); }) || bName.empty()) {
+			throw invalid_argument("");
+		}
 		system("cls");
 		showText("Ingrese el autor del libro:");
 		cin >> bAuthor;
+		if (any_of(bAuthor.begin(), bAuthor.end(), [](char c) { return isdigit(c); }) || bAuthor.empty()) {
+			throw invalid_argument("");
+		}
 		system("cls");
 		showText("Ingrese el codigo ISBN del libro:");
 		cin >> input;
