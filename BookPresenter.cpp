@@ -9,10 +9,13 @@
 BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Book*> books;
 
+	/*Libro 1*/
 	string s01 = "Narnia";
 	string s02 = "Juan";
 	int s03 = 1234;
 	setBooks(s01, s02, s03);
+
+	/*Ejemplares del libro 1*/
 	int s04 = 1;
 	string s05 = "A550";
 	bool s06 = true;
@@ -21,6 +24,27 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	string s08 = "B550";
 	bool s09 = true;
 	setCopies(s03, s07, s08, s09);
+	int s10 = 1;
+	string s11 = "C550";
+	bool s12 = true;
+	setCopies(s03, s10, s11, s12);
+
+
+	/*Libro 2*/
+	string s13 = "The Way of Kings";
+	string s14 = "Pablo";
+	int s15 = 5678;
+	setBooks(s13, s14, s15);
+
+	/*Ejemplares del libro 2*/
+	int s16 = 1;
+	string s17 = "A440";
+	bool s18 = true;
+	setCopies(s15, s16, s17, s18);
+	int s19 = 1;
+	string s20 = "B440";
+	bool s21 = true;
+	setCopies(s15, s19, s20, s21);
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
@@ -92,10 +116,12 @@ void BookPresenter::printBook(int x) {
 			string s01 = book->getName();
 			string s02 = book->getAuthor();
 			string s03 = to_string(book->getISBN());
+			m_view->showText("-----------------------------------------------");
 			m_view->showText("El libro ingresado tiene los siguientes datos:");
 			m_view->showText("	Nombre: " + s01);
 			m_view->showText("	Autor: " + s02);
 			m_view->showText("	ISBN: " + s03);
+			m_view->showText("-----------------------------------------------");
 		}
 	}
 }
@@ -110,12 +136,14 @@ void BookPresenter::printCopyList(int ISBN) {
 					string s03 = to_string(copy->getISBN());
 					string s04 = to_string(copy->getEditionNumber());
 					string s05 = copy->getLocation();
+					m_view->showText("--------------------------------------------------");
 					m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
 					m_view->showText("	Nombre: " + s01);
 					m_view->showText("	Autor: " + s02);
 					m_view->showText("	ISBN: " + s03);
 					m_view->showText("	Numero de Edicion: " + s04);
 					m_view->showText("	Locacion: " + s05);
+					m_view->showText("--------------------------------------------------");
 				}
 				if (book->getCopyList().empty()) {
 					m_view->showText("No hay ejemplares disponibles del libro seleccionado");

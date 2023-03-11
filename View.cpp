@@ -73,7 +73,14 @@ void View::startMenu() {
 			showText("Ingrese el ISBN del Libro del cual quiere ver sus Ejemplares");
 			cin >> isbn;
 			bookPresenter->printCopyList(isbn);
-			cin >> isbn;
+			while (this->inputI != 0) {
+				system("cls");
+				bookPresenter->printCopyList(isbn);
+				showText("---------------------------------------");
+				showText("Presiona 0 para volver al menu Inicial");
+				showText("---------------------------------------");
+				cin >> inputI;
+			}
 			startMenu();
 			break;
 		case 9:
