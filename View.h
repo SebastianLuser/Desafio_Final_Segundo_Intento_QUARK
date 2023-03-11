@@ -23,6 +23,8 @@ public:
 	void memberMenu(int ID);
 	void bookMenu(int ID);
 	void returnCopyMenu(int mID);
+	void bookListMenu();
+	void copyListMenu();
 	virtual ~View() = default;
 private:
 	int inputI;

@@ -34,9 +34,9 @@ void View::startMenu() {
 		showText("	3. Crear un Ejemplar.");
 		showText("	4. Registrar accion de un Socio.");
 		showText("	5. Mostrar Libros.");
-		showText("	7. Mostrar historial de Prestamos");
-		showText("	8. Mostrar ejemplares de un Libro");
-		showText("	9. Salir.");
+		showText("	6. Mostrar historial de Prestamos");
+		showText("	7. Mostrar ejemplares de un Libro");
+		showText("	8. Salir.");
 		cin >> input;
 		this->inputI = stoi(input);
 		switch (this->inputI) {
@@ -58,37 +58,18 @@ void View::startMenu() {
 			break;
 		case 5:
 			system("cls");
-			bookPresenter->printBookList();
-			startMenu();
+			bookListMenu();
 			break;
 		case 6:
-			system("cls");
-			int isbn;
-			cin >> isbn;
-			bookPresenter->printCopyList(isbn);
-			startMenu();
-			break;
-		case 7:
 			system("cls");
 			loanPresenter->printLoanList();
 			startMenu();
 			break;
-		case 8:
+		case 7:
 			system("cls");
-			showText("Ingrese el ISBN del Libro del cual quiere ver sus Ejemplares");
-			cin >> isbn;
-			bookPresenter->printCopyList(isbn);
-			while (this->inputI != 0) {
-				system("cls");
-				bookPresenter->printCopyList(isbn);
-				showText("---------------------------------------");
-				showText("Presiona 0 para volver al menu Inicial");
-				showText("---------------------------------------");
-				cin >> inputI;
-			}
-			startMenu();
+			copyListMenu();
 			break;
-		case 9:
+		case 8:
 			EXIT_SUCCESS;
 			break;
 		default:
@@ -135,6 +116,7 @@ void View::memberCreateMenu() {
 			showText("--------------------------------------------------------------------------------------------------------------");
 			cin >> mID;
 			if (mID == 0) {
+				system("cls");
 				startMenu();
 			}
 		}
@@ -159,11 +141,13 @@ void View::memberCreateMenu() {
 				mFee = stoi(input);
 
 				memberPresenter->setMembersVIP(mName.c_str(), mLastName.c_str(), mID, mFee);
+				system("cls");
 				startMenu();
 			}
 		}
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		cin.clear();
 		memberCreateMenu();
 	}
@@ -192,9 +176,11 @@ void View::bookCreateMenu() {
 		cin >> input;
 		bISBN = stoi(input);
 		bookPresenter->setBooks(bName.c_str(), bAuthor.c_str(), bISBN);
+		system("cls");
 		startMenu();
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		bookCreateMenu();
 	}
 };
@@ -217,9 +203,11 @@ void View::copyCreateMenu() {
 		showText("Ingrese la locacion del Ejemplar:");
 		cin >> cLocation;
 		bookPresenter->setCopies(cISBN, cEditionNumber, cLocation.c_str(), true);
+		system("cls");
 		startMenu();
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		copyCreateMenu();
 	}
 };
@@ -241,12 +229,14 @@ void View::memberLoginMenu() {
 			cin >> input;
 			mID = stoi(input);
 			if (mID == 0) {
+				system("cls");
 				startMenu();
 			}
 		}
 		memberMenu(mID);
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		memberLoginMenu();
 	}
 };
@@ -301,6 +291,7 @@ void View::memberMenu(int mID) {
 		}
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		memberMenu(mID);
 	}
 };
@@ -310,12 +301,10 @@ void View::bookMenu(int mID) {
 	int numE;
 	string loc;
 	string date = "Today";
-	string input;
 	try {
 		system("cls");
 		showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
-		cin >> input;
-		loc = stoi(input);
+		cin >> loc;
 		if (bookPresenter->getCopy(loc)) {
 			if (bookPresenter->getCopy(loc)->getAvailable() == true) {
 				bookPresenter->getCopy(loc)->setAvailable(false);
@@ -328,54 +317,46 @@ void View::bookMenu(int mID) {
 				}
 			}
 		}
+		system("cls");
 		startMenu();
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		bookMenu(mID);
 	}
 };
 
 void View::returnCopyMenu(int mID) {
-	int ISBN;
 	int numE;
 	string loc;
 	string date = "Today";
-	string input;
 	try {
 		system("cls");
 		memberPresenter->printWithdrawnCopies(mID);
 		showText("Ingrese la locacion del Ejemplar que desea devolver:");
-		cin >> input;
-		loc = stoi(input);
+		cin >> loc;
 
-		/*if (memberPresenter->verifyAvailable(mID) == 1) {
-			while (memberPresenter->getMember(mID)->getCopy(loc) == 0) {
+		while (memberPresenter->checkWithdrawCopy(loc, mID) == false) {
+			system("cls");
+			memberPresenter->printWithdrawnCopies(mID);
+			showText("------------------------------------------------------------------------------------");
+			showText("No se encontro ningun Ejemplar con esa locacion en la lista de Ejemplares retirados");
+			showText("Ingrese la locacion del Ejemplar que desea devolver o 0 para elegir otra accion :");
+			showText("------------------------------------------------------------------------------------");
+			cin >> loc;
+			if (loc == "0") {
 				system("cls");
-				memberPresenter->printWithdrawnCopies(mID);
-				showText("------------------------------------------------------------------------------------");
-				showText("No se encontro ningun Ejemplar con esa locacion en la lista de Ejemplares retirados");
-				showText("------------------------------------------------------------------------------------");
-				cin >> loc;
+				memberMenu(mID);
 			}
 		}
-		if (memberPresenter->verifyAvailable(mID) == 2) {
-			while (memberPresenter->getMember(mID)->getCopy(loc) == 0) {
-				system("cls");
-				memberPresenter->printWithdrawnCopies(mID);
-				showText("------------------------------------------------------------------------------------");
-				showText("No se encontro ningun Ejemplar con esa locacion en la lista de Ejemplares retirados");
-				showText("------------------------------------------------------------------------------------");
-				cin >> loc;
-			}
-		}*/
+
 		while (bookPresenter->getCopy(loc) == 0) {
 			system("cls");
 			memberPresenter->printWithdrawnCopies(mID);
 			showText("-----------------------------------------------------------------");
 			showText("No se encontro ningun Ejemplar con esa locacion en la biblioteca");
 			showText("-----------------------------------------------------------------");
-			cin >> input;
-			loc = stoi(input);
+			cin >> loc;
 		}
 		memberPresenter->removeWithdrawnCopies(bookPresenter->getCopy(loc), mID);
 		bookPresenter->getCopy(loc)->setAvailable(true);
@@ -385,9 +366,68 @@ void View::returnCopyMenu(int mID) {
 		if (memberPresenter->verifyAvailable(mID) == 2) {
 			loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMemberVIP(mID), date);
 		}
+		system("cls");
 		startMenu();
 	}
 	catch (const invalid_argument& e) {
+		system("cls");
 		returnCopyMenu(mID);
+	}
+};
+
+
+void View::bookListMenu() {
+	string input;
+	try {
+		bookPresenter->printBookList();
+		showText("---------------------------------------");
+		showText("Presiona 0 para volver al menu Inicial");
+		showText("---------------------------------------");
+		cin >> input;
+		inputI = stoi(input);
+		while (this->inputI != 0) {
+			system("cls");
+			bookPresenter->printBookList();
+			showText("---------------------------------------");
+			showText("Presiona 0 para volver al menu Inicial");
+			showText("---------------------------------------");
+			cin >> input;
+			inputI = stoi(input);
+		}
+		system("cls");
+		startMenu();
+	}
+	catch (const invalid_argument& e) {
+		system("cls");
+		bookListMenu();
+	}
+	
+};
+void View::copyListMenu() {
+	int isbn;
+	string input;
+	try {
+		showText("Ingrese el ISBN del Libro del cual quiere ver sus Ejemplares");
+		cin >> input;
+		isbn = stoi(input);
+		bookPresenter->printCopyList(isbn);
+		showText("---------------------------------------");
+		showText("Presiona 0 para volver al menu Inicial");
+		showText("---------------------------------------");
+		cin >> inputI;
+		while (this->inputI != 0) {
+			system("cls");
+			bookPresenter->printCopyList(isbn);
+			showText("---------------------------------------");
+			showText("Presiona 0 para volver al menu Inicial");
+			showText("---------------------------------------");
+			cin >> inputI;
+		}
+		system("cls");
+		startMenu();
+	}
+	catch (const invalid_argument& e) {
+		system("cls");
+		copyListMenu();
 	}
 };

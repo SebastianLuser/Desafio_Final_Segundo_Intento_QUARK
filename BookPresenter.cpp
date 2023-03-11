@@ -56,7 +56,7 @@ void BookPresenter::setBooks(string name, string author, int ISBN) {
 			this->books.push_back(new Book(name, author, ISBN));
 		}
 	}
-	catch (string txtException) {
+	catch (const char* txtException) {
 		m_view->showText(txtException);
 	}
 }		
@@ -75,7 +75,7 @@ void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool
 			throw("No existe un Libro con el correspondiente ISBN");
 		}
 	}
-	catch (string txtException) {
+	catch (const char* txtException) {
 		m_view->showText(txtException);
 	}
 
@@ -83,36 +83,24 @@ void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool
 
 Copy* BookPresenter::getCopy(string location) {
 	list<Copy*> copiesaux;
-	try {
-		for (Book* book : this->books) {
-			copiesaux = book->getCopyList();
-			for (Copy* copy : copiesaux) {
-				if (copy->getLocation() == location) {
-					return copy;
-				}
+	for (Book* book : this->books) {
+		copiesaux = book->getCopyList();
+		for (Copy* copy : copiesaux) {
+			if (copy->getLocation() == location) {
+				return copy;
 			}
 		}
-		throw ("No existe un Ejemplar con la correspondiente locacion");
 	}
-	catch (string txtException) {
-		m_view->showText(txtException);
-		return 0;
-	}
+	return 0;
 }
 
 Book* BookPresenter::getBook(int ISBN) {
-	try {
-		for (Book* book : this->books) {
-			if (book->getISBN() == ISBN) {
-				return book;
-			}
+	for (Book* book : this->books) {
+		if (book->getISBN() == ISBN) {
+			return book;
 		}
-		throw ("No existe un LIbro con el correspondiente ISBN");
 	}
-	catch (string txtException) {
-		m_view->showText(txtException);
-		return 0;
-	}
+	return 0;
 }
 
 list<Book*>BookPresenter::getBooks() {
@@ -175,7 +163,7 @@ void BookPresenter::printCopyList(int ISBN) {
 			}
 		}
 	}
-	catch (string txtException) {
+	catch (const char* txtException) {
 		m_view->showText(txtException);
 	}
 }
@@ -207,7 +195,7 @@ void BookPresenter::printCopy(int ISBN, string location) {
 			}
 		}
 	}
-	catch (string txtException) {
+	catch (const char* txtException) {
 		m_view->showText(txtException);
 	}
 }
