@@ -266,7 +266,14 @@ void View::memberMenu(int mID) {
 					bookMenu(mID);
 				}
 				else {
-					showText("El socio no puede retirar mas ejemplares.");
+					while (this->inputI != 0) {
+						showText("----------------------------------");
+						showText("Presiona 0 para elegir otra accion");
+						showText("----------------------------------");
+						cin >> inputI;
+					}
+					memberMenu(mID);
+
 				}
 			}
 			if (this->inputI == 2) {

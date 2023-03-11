@@ -29,7 +29,7 @@ public:
 	MemberVIP* getMemberVIP(int identificationNumber);
 	bool CheckAvailability(int identificationNumber);
 	void removeWithdrawnCopies(Copy* copy, int identificationNumber);
-	bool checkWithdrawCopy(string location, int identificationNumber);
+	bool checkWithdrawCopy(string location, int identificacionNumber);
 
 private:
 	IView* m_view = nullptr;

@@ -159,6 +159,7 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 				return true;
 			}
 			else {
+				/*return false;*/
 				throw ("El Socio ya retiro su cantidad maxima de libros");
 			}
 		}
@@ -167,6 +168,7 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 				return true;
 			}
 			else {
+				//return false;
 				throw ("El Socio VIP ya retiro su cantidad maxima de libros");
 			}
 		}
