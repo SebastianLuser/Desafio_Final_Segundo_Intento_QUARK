@@ -38,11 +38,11 @@ void LoanPresenter::printLoanList() {
 		string s03 = to_string(loan->getCopy()->getISBN());
 		string s12 = loan->getCopy()->getLocation();
 		string s13;
-		if (loan->getCopy()->getAvailable() == false) {
-			s13 = "Retirado";
+		if (loan->getStatus() == false) {
+			s13 = "Disponible";
 		}
 		else {
-			s13 = "Disponible";
+			s13 = "Retirado";
 		}
 		string s04 = loan->getDate();
 		m_view->showText("-----------------------------------------------");

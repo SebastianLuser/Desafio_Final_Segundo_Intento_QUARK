@@ -317,6 +317,14 @@ void View::returnCopyMenu(int mID) {
 	memberPresenter->printWithdrawnCopies(mID);
 	showText("Ingrese la locacion del Ejemplar que desea devolver:");
 	cin >> loc;
+	//while (bookPresenter->getCopy(loc) == 0) {
+	//	system("cls");
+	//	memberPresenter->printWithdrawnCopies(mID);
+	//	showText("-----------------------------------------------------------------");
+	//	showText("No se encontro ningun Ejemplar con esa locacion en la biblioteca");
+	//	showText("-----------------------------------------------------------------");
+	//	cin >> loc;
+	//}
 	while (bookPresenter->getCopy(loc) == 0) {
 		system("cls");
 		memberPresenter->printWithdrawnCopies(mID);
@@ -325,8 +333,8 @@ void View::returnCopyMenu(int mID) {
 		showText("-----------------------------------------------------------------");
 		cin >> loc;
 	}
-	bookPresenter->getCopy(loc)->setAvailable(true);
 	memberPresenter->removeWithdrawnCopies(bookPresenter->getCopy(loc), mID);
+	bookPresenter->getCopy(loc)->setAvailable(true);
 	if (memberPresenter->verifyAvailable(mID) == 1) {
 		loanPresenter->setLoan(bookPresenter->getCopy(loc), memberPresenter->getMember(mID), date);
 	}

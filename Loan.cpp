@@ -9,11 +9,23 @@ Loan::Loan(Copy* copy, Member* member, string date) {
 	this->copy = copy;
 	this->member = member;
 	this->date = date;
+	if (this->copy->getAvailable()) {
+		this->status = false;
+	}else {
+		this->status = true;
+	}
 }
 Loan::Loan(Copy* copy, MemberVIP* memberVIP, string date) {
 	this->copy = copy;
 	this->memberVIP = memberVIP;
 	this->date = date;
+	if (this->copy->getAvailable()) {
+		this->status = false;
+	}
+	else {
+		this->status = true;
+	}
+
 }
 
 void Loan::setCopy(Copy* copy) {
@@ -41,3 +53,7 @@ MemberVIP* Loan::getMemberVIP() {
 string Loan::getDate() {
 	return this->date;
 }
+
+bool Loan::getStatus() {
+	return this->status;
+};

@@ -24,11 +24,13 @@ public:
 	Member* getMember();
 	MemberVIP* getMemberVIP();
 	string getDate();
+	bool getStatus();
 private:
 	Copy* copy;
 	Member* member;
 	MemberVIP* memberVIP;
 	string date;
+	bool status;
 };
 
 #endif
