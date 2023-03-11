@@ -48,48 +48,70 @@ BookPresenter::BookPresenter(IView* view) : m_view(view) {
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
-
-	if (getBook(ISBN)) {
-		m_view->showText("Ya existe un Libro con el correspondiente ISBN");
+	try {
+		if (getBook(ISBN)) {
+			 throw ("Ya existe un Libro con el correspondiente ISBN");
+		}
+		else {
+			this->books.push_back(new Book(name, author, ISBN));
+		}
 	}
-	else {
-		this->books.push_back(new Book(name, author, ISBN));
+	catch (string txtException) {
+		m_view->showText(txtException);
 	}
 }		
 
 void BookPresenter::setCopies(int ISBN, int editionNumber, string location, bool available) {
-	if (getBook(ISBN)) {
-		if (getCopy(location) != 0) {
-			m_view->showText("Ya existe un Ejemplar con la correspondiente locacion");
+	try {
+		if (getBook(ISBN)) {
+			if (getCopy(location) != 0) {
+				throw ("Ya existe un Ejemplar con la correspondiente locacion");
+			}
+			else {
+				this->getBook(ISBN)->setCopyList(editionNumber, location, available);
+			}
 		}
 		else {
-			this->getBook(ISBN)->setCopyList(editionNumber, location, available);
+			throw("No existe un Libro con el correspondiente ISBN");
 		}
 	}
-	else {
-		m_view->showText("No existe un Libro con el correspondiente ISBN");
+	catch (string txtException) {
+		m_view->showText(txtException);
 	}
 
 }
 
 Copy* BookPresenter::getCopy(string location) {
 	list<Copy*> copiesaux;
-	for (Book* book : this->books) {
-		copiesaux = book->getCopyList();
-		for (Copy* copy : copiesaux) {
-			if (copy->getLocation() == location) {
-				return copy;
+	try {
+		for (Book* book : this->books) {
+			copiesaux = book->getCopyList();
+			for (Copy* copy : copiesaux) {
+				if (copy->getLocation() == location) {
+					return copy;
+				}
 			}
 		}
+		throw ("No existe un Ejemplar con la correspondiente locacion");
 	}
-	return 0;
+	catch (string txtException) {
+		m_view->showText(txtException);
+		return 0;
+	}
 }
 
 Book* BookPresenter::getBook(int ISBN) {
-	for (Book* book : this->books) {
-		if (book->getISBN() == ISBN) {
-			return book;
+	try {
+		for (Book* book : this->books) {
+			if (book->getISBN() == ISBN) {
+				return book;
+			}
 		}
+		throw ("No existe un LIbro con el correspondiente ISBN");
+	}
+	catch (string txtException) {
+		m_view->showText(txtException);
+		return 0;
 	}
 }
 
@@ -127,55 +149,65 @@ void BookPresenter::printBook(int x) {
 }
 
 void BookPresenter::printCopyList(int ISBN) {
-	for (Book* book : this->books) {
-		if (book->getISBN() == ISBN) {
-			for (Copy* copy : book->getCopyList()) {
-				if (copy->getAvailable() == true) {
-					string s01 = copy->getName();
-					string s02 = copy->getAuthor();
-					string s03 = to_string(copy->getISBN());
-					string s04 = to_string(copy->getEditionNumber());
-					string s05 = copy->getLocation();
-					m_view->showText("--------------------------------------------------");
-					m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
-					m_view->showText("	Nombre: " + s01);
-					m_view->showText("	Autor: " + s02);
-					m_view->showText("	ISBN: " + s03);
-					m_view->showText("	Numero de Edicion: " + s04);
-					m_view->showText("	Locacion: " + s05);
-					m_view->showText("--------------------------------------------------");
-				}
-				if (book->getCopyList().empty()) {
-					m_view->showText("No hay ejemplares disponibles del libro seleccionado");
-				}
-			}
-		}
-	}
-}
-
-void BookPresenter::printCopy(int ISBN, string location) {
-	for (Book* book : this->books) {
-		if (book->getISBN() == ISBN) {
-			for (Copy* copy : book->getCopyList()) {
-				if (copy->getLocation() == location) {
+	try {
+		for (Book* book : this->books) {
+			if (book->getISBN() == ISBN) {
+				for (Copy* copy : book->getCopyList()) {
 					if (copy->getAvailable() == true) {
 						string s01 = copy->getName();
 						string s02 = copy->getAuthor();
 						string s03 = to_string(copy->getISBN());
 						string s04 = to_string(copy->getEditionNumber());
 						string s05 = copy->getLocation();
+						m_view->showText("--------------------------------------------------");
 						m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
 						m_view->showText("	Nombre: " + s01);
 						m_view->showText("	Autor: " + s02);
 						m_view->showText("	ISBN: " + s03);
 						m_view->showText("	Numero de Edicion: " + s04);
 						m_view->showText("	Locacion: " + s05);
+						m_view->showText("--------------------------------------------------");
 					}
-					else {
-						m_view->showText("Este ejemplar no esta disponible");
+					if (book->getCopyList().empty()) {
+						throw("No hay ejemplares disponibles del libro seleccionado");
 					}
 				}
 			}
 		}
+	}
+	catch (string txtException) {
+		m_view->showText(txtException);
+	}
+}
+
+void BookPresenter::printCopy(int ISBN, string location) {
+	try {
+		for (Book* book : this->books) {
+			if (book->getISBN() == ISBN) {
+				for (Copy* copy : book->getCopyList()) {
+					if (copy->getLocation() == location) {
+						if (copy->getAvailable() == true) {
+							string s01 = copy->getName();
+							string s02 = copy->getAuthor();
+							string s03 = to_string(copy->getISBN());
+							string s04 = to_string(copy->getEditionNumber());
+							string s05 = copy->getLocation();
+							m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
+							m_view->showText("	Nombre: " + s01);
+							m_view->showText("	Autor: " + s02);
+							m_view->showText("	ISBN: " + s03);
+							m_view->showText("	Numero de Edicion: " + s04);
+							m_view->showText("	Locacion: " + s05);
+						}
+						else {
+							throw ("Este ejemplar no esta disponible");
+						}
+					}
+				}
+			}
+		}
+	}
+	catch (string txtException) {
+		m_view->showText(txtException);
 	}
 }

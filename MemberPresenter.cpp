@@ -135,21 +135,27 @@ void MemberPresenter::setWithdrawnCopies(Copy* copy , int identificationNumber) 
 
 
 bool MemberPresenter::CheckAvailability(int identificationNumber) {
-	if (verifyAvailable(identificationNumber) == 1) {
-		if (this->getMember(identificationNumber)->CheckCant()) {
-			return true;
+	try {
+		if (verifyAvailable(identificationNumber) == 1) {
+			if (this->getMember(identificationNumber)->CheckCant()) {
+				return true;
+			}
+			else {
+				throw ("El Socio ya retiro su cantidad maxima de libros");
+			}
 		}
-		else {
-			return false;
+		else if (verifyAvailable(identificationNumber) == 2) {
+			if (this->getMemberVIP(identificationNumber)->CheckCant()) {
+				return true;
+			}
+			else {
+				throw ("El Socio VIP ya retiro su cantidad maxima de libros");
+			}
 		}
 	}
-	else if (verifyAvailable(identificationNumber) == 2) {
-		if (this->getMemberVIP(identificationNumber)->CheckCant()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+	catch (string txtException) {
+		m_view->showText(txtException);
+		return false;
 	}
 }
 
