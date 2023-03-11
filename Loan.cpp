@@ -5,25 +5,39 @@
 #include<iostream>
 #include <string>
 
+#include <chrono>
+#include <ctime>
+#include <stdio.h>
+
 Loan::Loan(Copy* copy, Member* member, string date) {
+	time_t value = time(NULL);
+	char buff[26];
+	ctime_s(buff, sizeof buff, &value);
+
 	this->copy = copy;
 	this->member = member;
-	this->date = date;
 	if (this->copy->getAvailable()) {
 		this->status = false;
+		this->date = "";
 	}else {
 		this->status = true;
+		this->date = buff;
 	}
 }
 Loan::Loan(Copy* copy, MemberVIP* memberVIP, string date) {
+	time_t value = time(NULL);
+	char buff[26];
+	ctime_s(buff, sizeof buff, &value);
+
 	this->copy = copy;
 	this->memberVIP = memberVIP;
-	this->date = date;
 	if (this->copy->getAvailable()) {
 		this->status = false;
+		this->date = "";
 	}
 	else {
 		this->status = true;
+		this->date = buff;
 	}
 
 }
