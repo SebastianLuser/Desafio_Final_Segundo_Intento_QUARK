@@ -171,7 +171,7 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 			}
 		}
 	}
-	catch (string txtException) {
+	catch (const char* txtException) {
 		m_view->showText(txtException);
 		return false;
 	}
