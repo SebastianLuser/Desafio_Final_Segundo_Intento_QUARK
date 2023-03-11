@@ -16,6 +16,7 @@ public:
 	int getCantMax();
 	int getIdentificationNumber();
 	void setWithdrawCopyList(Copy* copy);
+	void removeWithdrawCopyList(Copy* copy);
 	list<Copy*>getWithdrawCopyList();
 	bool CheckCant();
 	

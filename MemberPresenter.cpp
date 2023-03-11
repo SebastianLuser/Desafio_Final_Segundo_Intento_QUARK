@@ -182,10 +182,11 @@ void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 
 
 void MemberPresenter::removeWithdrawnCopies(Copy* copy, int identificationNumber) {
+
 	if (verifyAvailable(identificationNumber) == 1) {
-		this->getMember(identificationNumber)->getWithdrawCopyList().remove(copy);
+		this->getMember(identificationNumber)->removeWithdrawCopyList(copy);
 	}
 	else if (verifyAvailable(identificationNumber) == 2) {
-		this->getMemberVIP(identificationNumber)->getWithdrawCopyList().remove(copy);
+		this->getMemberVIP(identificationNumber)->removeWithdrawCopyList(copy);
 	}
 }

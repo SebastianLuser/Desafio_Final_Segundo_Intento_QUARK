@@ -26,6 +26,10 @@ void Member::setWithdrawCopyList(Copy* copy) {
 	this->withdrawCopies.push_back(copy);
 };
 
+void Member::removeWithdrawCopyList(Copy* copy) {
+	this->withdrawCopies.remove(copy);
+};
+
 list<Copy*> Member::getWithdrawCopyList() {
 	return this->withdrawCopies;
 }
