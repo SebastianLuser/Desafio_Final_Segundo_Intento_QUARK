@@ -27,7 +27,6 @@ void View::showText(const string& text) {
 void View::startMenu() {
 	string input;
 	try {
-		/*system("cls");*/
 		showText("Bienvenido seleccione una de las siguientes opciones:");
 		showText("	1. Crear un Socio.");
 		showText("	2. Crear un Libro.");
@@ -37,6 +36,7 @@ void View::startMenu() {
 		showText("	6. Mostrar historial de Prestamos");
 		showText("	7. Mostrar ejemplares de un Libro");
 		showText("	8. Salir.");
+		cin >> ws;
 		cin >> input;
 		this->inputI = stoi(input);
 		switch (this->inputI) {
@@ -100,18 +100,21 @@ void View::memberCreateMenu() {
 		cin.clear();
 		system("cls");
 		showText("Ingrese el nombre del socio: (Solo letras)");
+		cin >> ws;
 		cin >> mName;
 		if(any_of(mName.begin(), mName.end(), [](char c) { return isdigit(c); }) || mName.empty()) {
 			throw invalid_argument("");
 		}
 		system("cls");
 		showText("Ingrese el apellido del socio: (Solo letras)");
+		cin >> ws;
 		cin >> mLastName;
 		if (any_of(mLastName.begin(), mLastName.end(), [](char c) { return isdigit(c); }) || mLastName.empty()) {
 			throw invalid_argument("");
 		}
 		system("cls");
 		showText("Ingrese el ID del socio: (Solo numeros)");
+		cin >> ws;
 		cin >> input;
 		mID = stoi(input);
 
@@ -130,6 +133,7 @@ void View::memberCreateMenu() {
 		showText("Ingrese si el socio es VIP: (Solo numeros)");
 		showText("1.No");
 		showText("2.Si");
+		cin >> ws;
 		cin >> input;
 		inputI = stoi(input);
 
@@ -143,9 +147,9 @@ void View::memberCreateMenu() {
 				system("cls");
 				system("cls");
 				showText("Ingrese el costo mensual de la membresia VIP:");
+				cin >> ws;
 				cin >> input;
 				mFee = stoi(input);
-
 				memberPresenter->setMembersVIP(mName.c_str(), mLastName.c_str(), mID, mFee);
 				system("cls");
 				startMenu();
@@ -167,13 +171,15 @@ void View::bookCreateMenu() {
 	try {
 		system("cls");
 		showText("Ingrese el nombre del libro:");
-		cin >> bName;
-		/*if (any_of(bName.begin(), bName.end(), [](char c) { return isdigit(c); }) || bName.empty()) {
+		cin >> ws;
+		getline(cin, bName);
+		if (bName.empty()) {
 			throw invalid_argument("");
-		}*/
+		}
 		system("cls");
 		showText("Ingrese el autor del libro:");
-		cin >> bAuthor;
+		cin >> ws;
+		getline(cin, bAuthor);
 		if (any_of(bAuthor.begin(), bAuthor.end(), [](char c) { return isdigit(c); }) || bAuthor.empty()) {
 			throw invalid_argument("");
 		}
@@ -203,15 +209,18 @@ void View::copyCreateMenu() {
 		else {
 			system("cls");
 			showText("Ingrese el codigo ISBN del Libro:");
+			cin >> ws;
 			cin >> input;
 			cISBN = stoi(input);
 			if (bookPresenter->getBook(cISBN)) {
 				system("cls");
 				showText("Ingrese el numero de edicion del Ejemplar:");
+				cin >> ws;
 				cin >> input;
 				cEditionNumber = stoi(input);
 				system("cls");
 				showText("Ingrese la locacion del Ejemplar:");
+				cin >> ws;
 				cin >> cLocation;
 				bookPresenter->setCopies(cISBN, cEditionNumber, cLocation.c_str(), true);
 				system("cls");
@@ -239,6 +248,7 @@ void View::memberLoginMenu() {
 	try {
 		system("cls");
 		showText("Ingrese el ID al que se desea ingresar:");
+		cin >> ws;
 		cin >> input;
 		mID = stoi(input);
 		while (memberPresenter->verifyAvailable(mID) == 0) {
@@ -247,6 +257,7 @@ void View::memberLoginMenu() {
 			showText("El ID ingresado no existe o no esta registrado.");
 			showText("Porfavor ingrese un ID diferente o ingrese 0 para volver al menu de inicio");
 			showText("-----------------------------------------------------------------------------------");
+			cin >> ws;
 			cin >> input;
 			mID = stoi(input);
 			if (mID == 0) {
@@ -278,6 +289,7 @@ void View::memberMenu(int mID) {
 		showText("	2. Mostrar ejemplares retirados");
 		showText("	3. Devolver un Ejemplar");
 		showText("	4. Volver al menu inicial");
+		cin >> ws;
 		cin >> input;
 		this->inputI = stoi(input);
 		if (this->inputI == 1 || this->inputI == 2 || this->inputI == 3 || this->inputI == 4) {
@@ -293,6 +305,7 @@ void View::memberMenu(int mID) {
 						showText("----------------------------------");
 						showText("Presiona 0 para elegir otra accion");
 						showText("----------------------------------");
+						cin >> ws;
 						cin >> input;
 					}
 					memberMenu(mID);
@@ -333,6 +346,7 @@ void View::bookMenu(int mID) {
 	try {
 		system("cls");
 		showText("Ingrese la posicion en la biblioteca que tiene el ejemplar desea retirar:");
+		cin >> ws;
 		cin >> loc;
 		if (bookPresenter->getCopy(loc)) {
 			if (bookPresenter->getCopy(loc)->getAvailable() == true) {
@@ -365,6 +379,7 @@ void View::returnCopyMenu(int mID) {
 		system("cls");
 		memberPresenter->printWithdrawnCopies(mID);
 		showText("Ingrese la locacion del Ejemplar que desea devolver o presione 0 para elegir otra accion:");
+		cin >> ws;
 		cin >> loc;
 		if (loc == "0") {
 			memberMenu(mID);
@@ -376,6 +391,7 @@ void View::returnCopyMenu(int mID) {
 			showText("No se encontro ningun Ejemplar con esa locacion en la lista de Ejemplares retirados");
 			showText("Ingrese la locacion del Ejemplar que desea devolver o 0 para elegir otra accion :");
 			showText("------------------------------------------------------------------------------------");
+			cin >> ws;
 			cin >> loc;
 			if (loc == "0") {
 				system("cls");
@@ -407,6 +423,7 @@ void View::bookListMenu() {
 		showText("---------------------------------------");
 		showText("Presiona 0 para volver al menu Inicial");
 		showText("---------------------------------------");
+		cin >> ws;
 		cin >> input;
 		inputI = stoi(input);
 		while (this->inputI != 0) {
@@ -415,6 +432,7 @@ void View::bookListMenu() {
 			showText("---------------------------------------");
 			showText("Presiona 0 para volver al menu Inicial");
 			showText("---------------------------------------");
+			cin >> ws;
 			cin >> input;
 			inputI = stoi(input);
 		}
@@ -432,6 +450,7 @@ void View::copyListMenu() {
 	string input;
 	try {
 		showText("Ingrese el ISBN del Libro del cual quiere ver sus Ejemplares");
+		cin >> ws;
 		cin >> input;
 		ISBN = stoi(input);
 		bookPresenter->printCopyList(ISBN);
@@ -463,6 +482,7 @@ void View::loanListMenu() {
 		showText("---------------------------------------");
 		showText("Presiona 0 para volver al menu Inicial");
 		showText("---------------------------------------");
+		cin >> ws;
 		cin >> input;
 		this->inputI = stoi(input);
 		while (this->inputI != 0) {
