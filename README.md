@@ -12,7 +12,7 @@ Para este examen se asumio que el ISBN va a ser un numero unico por libro. y la 
 
 Si es de ayuda ya hay preparados unos Libros, Ejemplares y Miembros. Estos podran ser encontrados en los constructores del BookPresenter y el MemberPresenter (en un principio es casos estan comentados).
 
-Este examen fue hecho en conjunto de manera grupal con el compañero Sebastian Luser.
+Este examen fue hecho en conjunto de manera grupal con el compañero Gaspar Ormachea.
 
 Aclaracion el diagrama UML esta en UML Desafío Final Segundo Intento QUARK.pdf
 
