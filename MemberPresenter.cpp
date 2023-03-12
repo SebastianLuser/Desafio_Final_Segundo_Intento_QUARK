@@ -216,6 +216,7 @@ void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 	}
 	catch (const char* txtException) {
 		m_view->showText(txtException);
+		m_view->showText("---------------------------------------------------");
 	}
 }
 
