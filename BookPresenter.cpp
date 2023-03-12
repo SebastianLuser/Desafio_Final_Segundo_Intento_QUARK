@@ -174,7 +174,7 @@ void BookPresenter::printBook(int x) {
 void BookPresenter::printCopyList(int ISBN) {
 	try {
 		for (Book* book : this->books) {
-			if (book->getISBN() == ISBN) {
+			if (/*book->getISBN() == ISBN*/ this->getBook(ISBN)) {
 				if (this->checkAvailableCopies(ISBN) == true) {
 					for (Copy* copy : book->getCopyList()) {
 						if (copy->getAvailable() == true) {
