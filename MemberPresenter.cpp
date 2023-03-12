@@ -10,16 +10,18 @@ MemberPresenter::MemberPresenter(IView* view) : m_view(view) {
 	list<Member*> members;
 	list<MemberVIP*> membersVIP;
 
-	string s01 = "Gaspar";
-	string s02 = "O";
-	int s03 = 1;
-	this->setMembers(s01, s02, s03);
+	//MEMBER
+	//string s01 = "Gaspar";
+	//string s02 = "O";
+	//int s03 = 1;
+	//this->setMembers(s01, s02, s03);
 
-	string s04 = "Sebastian";
-	string s05 = "L";
-	int s06 = 2;
-	float s07 = 200.1;
-	this->setMembersVIP(s04, s05, s06, s07);
+	//MEMBER VIP
+	//string s04 = "Sebastian";
+	//string s05 = "L";
+	//int s06 = 2;
+	//float s07 = 200.1;
+	//this->setMembersVIP(s04, s05, s06, s07);
 }
 
 int  MemberPresenter::verifyAvailable(int identificationNumber) {

@@ -9,42 +9,42 @@
 BookPresenter::BookPresenter(IView* view) : m_view(view) {
 	list<Book*> books;
 
-	/*Libro 1*/
-	string s01 = "Narnia";
-	string s02 = "Juan";
-	int s03 = 1234;
-	setBooks(s01, s02, s03);
+	///*Libro 1*/
+	//string s01 = "Narnia";
+	//string s02 = "Juan";
+	//int s03 = 1234;
+	//setBooks(s01, s02, s03);
 
-	/*Ejemplares del libro 1*/
-	int s04 = 1;
-	string s05 = "A550";
-	bool s06 = true;
-	setCopies(s03, s04, s05, s06);
-	int s07 = 1;
-	string s08 = "B550";
-	bool s09 = true;
-	setCopies(s03, s07, s08, s09);
-	int s10 = 1;
-	string s11 = "C550";
-	bool s12 = true;
-	setCopies(s03, s10, s11, s12);
+	///*Ejemplares del libro 1*/
+	//int s04 = 1;
+	//string s05 = "A550";
+	//bool s06 = true;
+	//setCopies(s03, s04, s05, s06);
+	//int s07 = 1;
+	//string s08 = "B550";
+	//bool s09 = true;
+	//setCopies(s03, s07, s08, s09);
+	//int s10 = 1;
+	//string s11 = "C550";
+	//bool s12 = true;
+	//setCopies(s03, s10, s11, s12);
 
 
-	/*Libro 2*/
-	string s13 = "The Way of Kings";
-	string s14 = "Pablo";
-	int s15 = 5678;
-	setBooks(s13, s14, s15);
+	///*Libro 2*/
+	//string s13 = "The Way of Kings";
+	//string s14 = "Pablo";
+	//int s15 = 5678;
+	//setBooks(s13, s14, s15);
 
-	/*Ejemplares del libro 2*/
-	int s16 = 1;
-	string s17 = "A440";
-	bool s18 = true;
-	setCopies(s15, s16, s17, s18);
-	int s19 = 1;
-	string s20 = "B440";
-	bool s21 = true;
-	setCopies(s15, s19, s20, s21);
+	///*Ejemplares del libro 2*/
+	//int s16 = 1;
+	//string s17 = "A440";
+	//bool s18 = true;
+	//setCopies(s15, s16, s17, s18);
+	//int s19 = 1;
+	//string s20 = "B440";
+	//bool s21 = true;
+	//setCopies(s15, s19, s20, s21);
 }
 
 void BookPresenter::setBooks(string name, string author, int ISBN) {
