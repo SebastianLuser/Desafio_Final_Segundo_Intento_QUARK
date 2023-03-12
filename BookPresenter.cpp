@@ -162,7 +162,6 @@ void BookPresenter::printBook(int x) {
 }
 
 void BookPresenter::printCopyList(int ISBN) {
-	int check = 0;
 	try {
 		for (Book* book : this->books) {
 			if (book->getISBN() == ISBN) {
@@ -188,6 +187,9 @@ void BookPresenter::printCopyList(int ISBN) {
 				else {
 					throw ("No hay ejemplares disponibles del libro seleccionado");
 				}
+			}
+			else {
+				throw ("No se encontro el libro con el correspondiente ISBN");
 			}
 		}
 	}
