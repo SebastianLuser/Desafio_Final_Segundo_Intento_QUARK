@@ -1,9 +1,13 @@
 # Desafio_Final_Segundo_Intento_QUARK
 
-Descargar comprimido .zip del proyecto
-Descomprimir en carpeta deseada
-Con Visual Studio ingresar a tu-carpeta\Desafio_Final_Segundo_Intento_QUARK-master\Desafio Final Segundo Intento.sln
-Presiona F5 para correr el programa
+1.Descargar comprimido .zip del proyecto.
+
+2.Descomprimir en carpeta deseada.
+
+3.Con Visual Studio ingresar a tu-carpeta\Desafio_Final_Segundo_Intento_QUARK-master\Desafio Final Segundo Intento.sln.
+
+4.Presiona F5 para correr el programa.
+
 Para este examen se asumio que el ISBN va a ser un numero unico por libro. y la locacion va a ser unica por Ejemplar
 
 Si es de ayuda ya hay preparados unos Libros, Ejemplares y Miembros. Estos podran ser encontrados en los constructores del BookPresenter y el MemberPresenter (en un principio es casos estan comentados).
