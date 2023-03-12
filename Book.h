@@ -15,6 +15,7 @@ public:
 	int getISBN();
 	void setCopyList(int editionNumber, string location, bool available);
 	list<Copy*> getCopyList();
+	Copy* removeCopy(Copy* copy);
 protected:
 	string name;
 	string author;

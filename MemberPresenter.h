@@ -30,6 +30,10 @@ public:
 	bool CheckAvailability(int identificationNumber);
 	void removeWithdrawnCopies(Copy* copy, int identificationNumber);
 	bool checkWithdrawCopy(string location, int identificacionNumber);
+	Copy* getWithdrawnCopy(string location, int identificationNumber);
+	bool checkAvailableMembers();
+	bool checkAvailableMembersVIP();
+
 
 private:
 	IView* m_view = nullptr;

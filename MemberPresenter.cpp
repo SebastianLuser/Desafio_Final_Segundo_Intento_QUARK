@@ -101,8 +101,6 @@ void MemberPresenter::printMemberVIP(int x) {
 			m_view->showText("	Apellido: " + s02);
 			m_view->showText("	Numero de identificacion: " + s03);
 			m_view->showText("	Costo mensual: $" + s04);
-			m_view->showText("	CantMax value" + s05);
-			cout << memberVIP->CheckCant();
 		}
 	}
 };
@@ -159,7 +157,6 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 				return true;
 			}
 			else {
-				/*return false;*/
 				throw ("El Socio ya retiro su cantidad maxima de libros");
 			}
 		}
@@ -168,7 +165,6 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 				return true;
 			}
 			else {
-				//return false;
 				throw ("El Socio VIP ya retiro su cantidad maxima de libros");
 			}
 		}
@@ -181,8 +177,9 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 
 
 void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
+	m_view->showText("Los Ejemplares retirados por este Socio son:");
 	m_view->showText("---------------------------------------------------");
-	m_view->showText("Los ejemplares retirados por este Socio son:");
+
 	list<Copy*> listAux;
 	if (this->verifyAvailable(identificationNumber) == 1) {
 		listAux =  this->getMember(identificationNumber)->getWithdrawCopyList();
@@ -202,8 +199,8 @@ void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 		m_view->showText("	ISBN: " + s03);
 		m_view->showText("	Numero de Edicion: " + s04);
 		m_view->showText("	Locacion: " + s05);
+		m_view->showText("---------------------------------------------------");
 	}
-	m_view->showText("---------------------------------------------------");
 }
 
 
@@ -216,3 +213,44 @@ void MemberPresenter::removeWithdrawnCopies(Copy* copy, int identificationNumber
 		this->getMemberVIP(identificationNumber)->removeWithdrawCopyList(copy);
 	}
 }
+
+Copy* MemberPresenter::getWithdrawnCopy(string location, int identificationNumber) {
+	if (verifyAvailable(identificationNumber) == 1) {
+		for (Member* member : this->members) {
+			for (Copy* copy : member->getWithdrawCopyList()) {
+				if (copy->getLocation() == location) {
+					return copy;
+				}
+			}
+		}
+	}
+	else if (verifyAvailable(identificationNumber) == 2) {
+		for (MemberVIP* memberVIP: this->membersVIP) {
+			for (Copy* copy : memberVIP->getWithdrawCopyList()) {
+				if (copy->getLocation() == location) {
+					return copy;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+
+bool MemberPresenter::checkAvailableMembers() {
+	if (this->members.empty()) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+bool MemberPresenter::checkAvailableMembersVIP(){
+	if (this->membersVIP.empty()) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+

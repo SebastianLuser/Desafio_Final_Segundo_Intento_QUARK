@@ -34,6 +34,15 @@ list<Copy*> Member::getWithdrawCopyList() {
 	return this->withdrawCopies;
 }
 
+bool  Member::checkAvailableWithdrawnCopies() {
+	if (this->withdrawCopies.empty()) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 bool Member::CheckCant() {
 	if (cantMax > withdrawCopies.size()) {
 		return true;

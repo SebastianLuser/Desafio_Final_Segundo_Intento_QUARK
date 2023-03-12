@@ -30,7 +30,7 @@ Loan::Loan(Copy* copy, MemberVIP* memberVIP, string date) {
 
 	this->copy = copy;
 	this->memberVIP = memberVIP;
-	this->date = bu;
+	this->date = buff;
 	if (this->copy->getAvailable()) {
 		this->status = false;
 	}

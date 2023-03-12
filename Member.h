@@ -19,6 +19,7 @@ public:
 	void removeWithdrawCopyList(Copy* copy);
 	list<Copy*>getWithdrawCopyList();
 	bool CheckCant();
+	bool checkAvailableWithdrawnCopies();
 	
 protected:
 	string name;
@@ -29,4 +30,4 @@ protected:
 
 };
 
-#endif#
+#endif

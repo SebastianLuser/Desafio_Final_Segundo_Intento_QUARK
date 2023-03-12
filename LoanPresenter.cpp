@@ -29,7 +29,7 @@ void LoanPresenter::printLoanList() {
 		string s12 = loan->getCopy()->getLocation();
 		string s13;
 		if (loan->getStatus() == false) {
-			s13 = "Disponible";
+			s13 = "Devuelto";
 		}
 		else {
 			s13 = "Retirado";
@@ -69,3 +69,12 @@ void LoanPresenter::printLoanList() {
 	}
 }
 
+
+bool LoanPresenter::checkAvailableLoans() {
+	if (this->loans.empty()) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
