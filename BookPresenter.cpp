@@ -174,28 +174,30 @@ void BookPresenter::printBook(int x) {
 void BookPresenter::printCopyList(int ISBN) {
 	try {
 		for (Book* book : this->books) {
-			if (/*book->getISBN() == ISBN*/ this->getBook(ISBN)) {
-				if (this->checkAvailableCopies(ISBN) == true) {
-					for (Copy* copy : book->getCopyList()) {
-						if (copy->getAvailable() == true) {
-							string s01 = copy->getName();
-							string s02 = copy->getAuthor();
-							string s03 = to_string(copy->getISBN());
-							string s04 = to_string(copy->getEditionNumber());
-							string s05 = copy->getLocation();
-							m_view->showText("--------------------------------------------------");
-							m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
-							m_view->showText("	Nombre: " + s01);
-							m_view->showText("	Autor: " + s02);
-							m_view->showText("	ISBN: " + s03);
-							m_view->showText("	Numero de Edicion: " + s04);
-							m_view->showText("	Locacion: " + s05);
-							m_view->showText("--------------------------------------------------");
+			if ( this->getBook(ISBN)) {
+				if (book->getISBN() == ISBN) {
+					if (this->checkAvailableCopies(ISBN) == true) {
+						for (Copy* copy : book->getCopyList()) {
+							if (copy->getAvailable() == true) {
+								string s01 = copy->getName();
+								string s02 = copy->getAuthor();
+								string s03 = to_string(copy->getISBN());
+								string s04 = to_string(copy->getEditionNumber());
+								string s05 = copy->getLocation();
+								m_view->showText("--------------------------------------------------");
+								m_view->showText("El Ejemplar ingresado tiene los siguientes datos:");
+								m_view->showText("	Nombre: " + s01);
+								m_view->showText("	Autor: " + s02);
+								m_view->showText("	ISBN: " + s03);
+								m_view->showText("	Numero de Edicion: " + s04);
+								m_view->showText("	Locacion: " + s05);
+								m_view->showText("--------------------------------------------------");
+							}
 						}
 					}
-				}
-				else {
-					throw ("No hay ejemplares disponibles del libro seleccionado");
+					else {
+						throw ("No hay ejemplares disponibles del libro seleccionado");
+					}
 				}
 			}
 			else {
