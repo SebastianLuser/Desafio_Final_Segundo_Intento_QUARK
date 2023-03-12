@@ -16,12 +16,11 @@ Loan::Loan(Copy* copy, Member* member, string date) {
 
 	this->copy = copy;
 	this->member = member;
+	this->date = buff;
 	if (this->copy->getAvailable()) {
 		this->status = false;
-		this->date = "";
 	}else {
 		this->status = true;
-		this->date = buff;
 	}
 }
 Loan::Loan(Copy* copy, MemberVIP* memberVIP, string date) {
@@ -31,13 +30,12 @@ Loan::Loan(Copy* copy, MemberVIP* memberVIP, string date) {
 
 	this->copy = copy;
 	this->memberVIP = memberVIP;
+	this->date = bu;
 	if (this->copy->getAvailable()) {
 		this->status = false;
-		this->date = "";
 	}
 	else {
 		this->status = true;
-		this->date = buff;
 	}
 
 }

@@ -17,19 +17,9 @@ void LoanPresenter::setLoan(Copy* copy, MemberVIP* memberVIP, string date) {
 	this->loans.push_back(new Loan(copy, memberVIP, date));
 }
 
-//Loan* LoanPresenter::getLoan(int ISBN) {
-//	for (Loan* loan : this->loans) {
-//		if (loan->getISBN() == ISBN) {
-//			return copy;
-//		}
-//	}
-//}
-
 list<Loan*>LoanPresenter::getLoanList() {
 	return this->loans;
 }
-
-
 
 void LoanPresenter::printLoanList() {
 	for (Loan* loan : this->loans) {
