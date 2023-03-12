@@ -181,27 +181,41 @@ bool MemberPresenter::CheckAvailability(int identificationNumber) {
 void MemberPresenter::printWithdrawnCopies(int identificationNumber) {
 	m_view->showText("Los Ejemplares retirados por este Socio son:");
 	m_view->showText("---------------------------------------------------");
-
 	list<Copy*> listAux;
-	if (this->verifyAvailable(identificationNumber) == 1) {
-		listAux =  this->getMember(identificationNumber)->getWithdrawCopyList();
+	try {
+		if (this->verifyAvailable(identificationNumber) == 1) {
+			if (this->getMember(identificationNumber)->checkAvailableWithdrawnCopies() == true) {
+				listAux =  this->getMember(identificationNumber)->getWithdrawCopyList();
+			}
+			else {
+				throw ("No hay Ejemplares Retirados disponibles");
+			}
+		}
+		if (this->verifyAvailable(identificationNumber) == 2) {
+			if (this->getMemberVIP(identificationNumber)->checkAvailableWithdrawnCopies() == true) {
+				listAux = this->getMemberVIP(identificationNumber)->getWithdrawCopyList();
+			}
+			else {
+				throw ("No hay Ejemplares Retirados disponibles");
+			}
+		}
+		for (Copy* copy : listAux) {
+			string s01 = copy->getName();
+			string s02 = copy->getAuthor();
+			string s03 = to_string(copy->getISBN());
+			string s04 = to_string(copy->getEditionNumber());
+			string s05 = copy->getLocation();
+			m_view->showText("El Ejemplar tiene los siguientes datos:");
+			m_view->showText("	Nombre: " + s01);
+			m_view->showText("	Autor: " + s02);
+			m_view->showText("	ISBN: " + s03);
+			m_view->showText("	Numero de Edicion: " + s04);
+			m_view->showText("	Locacion: " + s05);
+			m_view->showText("---------------------------------------------------");
+		}
 	}
-	if (this->verifyAvailable(identificationNumber) == 2) {
-		listAux = this->getMemberVIP(identificationNumber)->getWithdrawCopyList();
-	}
-	for (Copy* copy : listAux) {
-		string s01 = copy->getName();
-		string s02 = copy->getAuthor();
-		string s03 = to_string(copy->getISBN());
-		string s04 = to_string(copy->getEditionNumber());
-		string s05 = copy->getLocation();
-		m_view->showText("El Ejemplar tiene los siguientes datos:");
-		m_view->showText("	Nombre: " + s01);
-		m_view->showText("	Autor: " + s02);
-		m_view->showText("	ISBN: " + s03);
-		m_view->showText("	Numero de Edicion: " + s04);
-		m_view->showText("	Locacion: " + s05);
-		m_view->showText("---------------------------------------------------");
+	catch (const char* txtException) {
+		m_view->showText(txtException);
 	}
 }
 
