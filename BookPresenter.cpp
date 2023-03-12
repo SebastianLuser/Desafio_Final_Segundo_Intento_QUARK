@@ -132,16 +132,26 @@ bool BookPresenter::checkAvailableBooks() {
 
 
 void BookPresenter::printBookList() {
-	for (Book* book : this->books) {
-		string s01 = book->getName();
-		string s02 = book->getAuthor();
-		string s03 = to_string(book->getISBN());
-		m_view->showText("-----------------------------------------------");
-		m_view->showText("El libro ingresado tiene los siguientes datos:");
-		m_view->showText("	Nombre: " + s01);
-		m_view->showText("	Autor: " + s02);
-		m_view->showText("	ISBN: " + s03);
-		m_view->showText("-----------------------------------------------");
+	try {
+		if (this->checkAvailableBooks() == true) {
+			for (Book* book : this->books) {
+				string s01 = book->getName();
+				string s02 = book->getAuthor();
+				string s03 = to_string(book->getISBN());
+				m_view->showText("-----------------------------------------------");
+				m_view->showText("El libro ingresado tiene los siguientes datos:");
+				m_view->showText("	Nombre: " + s01);
+				m_view->showText("	Autor: " + s02);
+				m_view->showText("	ISBN: " + s03);
+				m_view->showText("-----------------------------------------------");
+			}
+		}
+		else {
+			throw ("No hay Libros disponibles");
+		}
+	}
+	catch (const char* txtException) {
+		m_view->showText(txtException);
 	}
 }
 
