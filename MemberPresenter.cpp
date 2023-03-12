@@ -50,14 +50,25 @@ list<Member*>MemberPresenter::getMembers() {
 	return this->members;
 }
 void MemberPresenter::printMemberList() {
-	for (Member* member : this->members) {
-		string s01 = member->getName();
-		string s02 = member->getLastname();
-		string s03 = to_string(member->getIdentificationNumber());
-		m_view->showText("El socio Clasico ingresado tiene los siguientes datos:");
-		m_view->showText("	Nombre: " + s01);
-		m_view->showText("	Apellido: " + s02);
-		m_view->showText("	Numero de identificacion: " + s03);
+	try {
+		if (this->checkAvailableMembers()==true) {
+
+			for (Member* member : this->members) {
+				string s01 = member->getName();
+				string s02 = member->getLastname();
+				string s03 = to_string(member->getIdentificationNumber());
+				m_view->showText("El socio Clasico ingresado tiene los siguientes datos:");
+				m_view->showText("	Nombre: " + s01);
+				m_view->showText("	Apellido: " + s02);
+				m_view->showText("	Numero de identificacion: " + s03);
+			}
+		}
+		else {
+			throw ("No hay Miembros existentes");
+		}
+	}
+	catch (const char* txtException) {
+		m_view->showText(txtException);
 	}
 };
 void MemberPresenter::printMember(int x) {
@@ -91,19 +102,29 @@ void MemberPresenter::printMemberVIPList() {
 	}
 };
 void MemberPresenter::printMemberVIP(int x) {
-	for (MemberVIP* memberVIP : this->membersVIP) {
-		if (memberVIP->getIdentificationNumber() == x) {
-			string s01 = memberVIP->getName();
-			string s02 = memberVIP->getLastname();
-			string s03 = to_string(memberVIP->getIdentificationNumber());
-			string s04 = to_string(memberVIP->getFee());
-			string s05 = to_string(memberVIP->getCantMax());
-			m_view->showText("El socio VIP ingresado tiene los siguientes datos:");
-			m_view->showText("	Nombre: " + s01);
-			m_view->showText("	Apellido: " + s02);
-			m_view->showText("	Numero de identificacion: " + s03);
-			m_view->showText("	Costo mensual: $" + s04);
+	try {
+		if (this->checkAvailableMembers() == true) {
+			for (MemberVIP* memberVIP : this->membersVIP) {
+				if (memberVIP->getIdentificationNumber() == x) {
+					string s01 = memberVIP->getName();
+					string s02 = memberVIP->getLastname();
+					string s03 = to_string(memberVIP->getIdentificationNumber());
+					string s04 = to_string(memberVIP->getFee());
+					string s05 = to_string(memberVIP->getCantMax());
+					m_view->showText("El socio VIP ingresado tiene los siguientes datos:");
+					m_view->showText("	Nombre: " + s01);
+					m_view->showText("	Apellido: " + s02);
+					m_view->showText("	Numero de identificacion: " + s03);
+					m_view->showText("	Costo mensual: $" + s04);
+				}
+			}
 		}
+		else {
+			throw ("No hay Miembros VIP existentes");
+		}
+	}
+	catch (const char* txtException) {
+		m_view->showText(txtException);
 	}
 };
 
