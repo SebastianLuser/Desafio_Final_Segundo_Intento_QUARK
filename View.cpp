@@ -62,7 +62,7 @@ void View::startMenu() {
 			break;
 		case 6:
 			system("cls");
-			loanPresenter->printLoanList();
+			loanListMenu();
 			startMenu();
 			break;
 		case 7:
@@ -76,9 +76,15 @@ void View::startMenu() {
 			throw this->inputI;
 		}
 	}
-
 	catch (const invalid_argument& e) {
 		system("cls");
+		startMenu();
+	}
+	catch (int inputI) {
+		system("cls");
+		showText("----------------");
+		showText("Opcion no valida");
+		showText("----------------");
 		startMenu();
 	}
 }
@@ -162,9 +168,9 @@ void View::bookCreateMenu() {
 		system("cls");
 		showText("Ingrese el nombre del libro:");
 		cin >> bName;
-		if (any_of(bName.begin(), bName.end(), [](char c) { return isdigit(c); }) || bName.empty()) {
+		/*if (any_of(bName.begin(), bName.end(), [](char c) { return isdigit(c); }) || bName.empty()) {
 			throw invalid_argument("");
-		}
+		}*/
 		system("cls");
 		showText("Ingrese el autor del libro:");
 		cin >> bAuthor;
@@ -191,24 +197,39 @@ void View::copyCreateMenu() {
 	string cLocation;
 	string input;
 	try {
-		system("cls");
-		showText("Ingrese el codigo ISBN del Libro:");
-		cin >> input;
-		cISBN = stoi(input);
-		system("cls");
-		showText("Ingrese el numero de edicion del Ejemplar:");
-		cin >> input;
-		cEditionNumber = stoi(input);
-		system("cls");
-		showText("Ingrese la locacion del Ejemplar:");
-		cin >> cLocation;
-		bookPresenter->setCopies(cISBN, cEditionNumber, cLocation.c_str(), true);
-		system("cls");
-		startMenu();
+		if (bookPresenter->checkAvailableBooks() == false) {
+			throw ("No hay Libros disponibles para crear un Ejemplar");
+		}
+		else {
+			system("cls");
+			showText("Ingrese el codigo ISBN del Libro:");
+			cin >> input;
+			cISBN = stoi(input);
+			if (bookPresenter->getBook(cISBN)) {
+				system("cls");
+				showText("Ingrese el numero de edicion del Ejemplar:");
+				cin >> input;
+				cEditionNumber = stoi(input);
+				system("cls");
+				showText("Ingrese la locacion del Ejemplar:");
+				cin >> cLocation;
+				bookPresenter->setCopies(cISBN, cEditionNumber, cLocation.c_str(), true);
+				system("cls");
+				startMenu();
+			}
+			else {
+				throw ("No existe ningun libro con el correspondiente ISBN");
+			}
+		}
 	}
 	catch (const invalid_argument& e) {
 		system("cls");
 		copyCreateMenu();
+	}
+	catch (const char* txtException) {
+		system("cls");
+		showText(txtException);
+		startMenu();
 	}
 };
 
@@ -342,9 +363,11 @@ void View::returnCopyMenu(int mID) {
 	try {
 		system("cls");
 		memberPresenter->printWithdrawnCopies(mID);
-		showText("Ingrese la locacion del Ejemplar que desea devolver:");
+		showText("Ingrese la locacion del Ejemplar que desea devolver o presione 0 para elegir otra accion:");
 		cin >> loc;
-
+		if (loc == "0") {
+			memberMenu(mID);
+		}
 		while (memberPresenter->checkWithdrawCopy(loc, mID) == false) {
 			system("cls");
 			memberPresenter->printWithdrawnCopies(mID);
@@ -429,5 +452,31 @@ void View::copyListMenu() {
 	catch (const invalid_argument& e) {
 		system("cls");
 		copyListMenu();
+	}
+};
+
+void View::loanListMenu() {
+	string input;
+	try{
+		loanPresenter->printLoanList();
+		showText("---------------------------------------");
+		showText("Presiona 0 para volver al menu Inicial");
+		showText("---------------------------------------");
+		cin >> input;
+		this->inputI = stoi(input);
+		while (this->inputI != 0) {
+			system("cls");
+			loanPresenter->printLoanList();
+			showText("---------------------------------------");
+			showText("Presiona 0 para volver al menu Inicial");
+			showText("---------------------------------------");
+			cin >> this->inputI;
+		}
+		system("cls");
+		startMenu();
+	}
+	catch (const invalid_argument& e) {
+		system("cls");
+		loanListMenu();
 	}
 };

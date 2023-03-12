@@ -25,10 +25,10 @@ public:
 	void returnCopyMenu(int mID);
 	void bookListMenu();
 	void copyListMenu();
+	void loanListMenu();
 	virtual ~View() = default;
 private:
 	int inputI;
-	
 	MemberPresenter* memberPresenter;
 	BookPresenter* bookPresenter;
 	LoanPresenter* loanPresenter;
