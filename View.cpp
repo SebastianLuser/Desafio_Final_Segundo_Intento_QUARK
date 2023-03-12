@@ -70,7 +70,7 @@ void View::startMenu() {
 			copyListMenu();
 			break;
 		case 8:
-			EXIT_SUCCESS;
+			exit(EXIT_SUCCESS);
 			break;
 		default:
 			throw this->inputI;
@@ -287,14 +287,15 @@ void View::memberMenu(int mID) {
 					bookMenu(mID);
 				}
 				else {
-					while (this->inputI != 0) {
+					while (input != "0") {
+						system("cls");
+						memberPresenter->CheckAvailability(mID);
 						showText("----------------------------------");
 						showText("Presiona 0 para elegir otra accion");
 						showText("----------------------------------");
-						cin >> inputI;
+						cin >> input;
 					}
 					memberMenu(mID);
-
 				}
 			}
 			if (this->inputI == 2) {
