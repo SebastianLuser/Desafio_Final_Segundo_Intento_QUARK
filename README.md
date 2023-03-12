@@ -14,7 +14,7 @@ Si es de ayuda ya hay preparados unos Libros, Ejemplares y Miembros. Estos podra
 
 Este examen fue hecho en conjunto de manera grupal con el compañero Sebastian Luser.
 
-Aclaracion el diagrama UML esta en UML Desafío Final Segundo Intento .pdf
+Aclaracion el diagrama UML esta en UML Desafío Final Segundo Intento QUARK.pdf
 
 
 //MEMBER
